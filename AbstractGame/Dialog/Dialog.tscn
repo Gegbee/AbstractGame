@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/atwriter.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Dialog/Dialog.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=2]
+size = 27
+extra_spacing_char = 2
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+extra_spacing_char = 2
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "PortraitBounce"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/VBoxContainer/TextureRect:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.107696, 0.299038 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -64 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control/VBoxContainer/TextureRect:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0740717, 0.167383 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Dialog" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Control" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 107.0
+margin_top = 771.0
+margin_right = -78.0
+margin_bottom = -63.0
+custom_constants/margin_right = 28
+custom_constants/margin_left = 28
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control"]
+margin_left = 28.0
+margin_right = 1707.0
+margin_bottom = 246.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer"]
+margin_right = 256.0
+margin_bottom = 246.0
+rect_min_size = Vector2( 256, 192 )
+expand = true
+stretch_mode = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer"]
+margin_left = 260.0
+margin_right = 1114.0
+margin_bottom = 246.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/CenterContainer"]
+margin_top = 82.0
+margin_right = 854.0
+margin_bottom = 163.0
+custom_constants/separation = 24
+
+[node name="Name" type="Label" parent="Control/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_right = 854.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 2 )
+text = "TEST NAME"
+
+[node name="Dialog" type="Label" parent="Control/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 58.0
+margin_right = 854.0
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 3 )
+text = "TEST DIALOG,,, LOREM IPSUMB ALLS ,, BBbbBBBb sit amet .,.//??'';\"\"SIT AMETQ!!!!"
+
+[node name="LabelTween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/PortraitBounce = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="AudioTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="AudioTimer" to="." method="_on_AudioTimer_timeout"]
