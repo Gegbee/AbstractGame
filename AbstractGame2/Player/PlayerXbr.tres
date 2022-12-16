@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://drirsk4kx6o2y"]
+
+[ext_resource type="Shader" path="res://Player/Player.gdshader" id="1_8g75u"]
+
+[resource]
+shader = ExtResource("1_8g75u")
+shader_parameter/DOMINANT_DIRECTION_THRESHOLD = 3.5
+shader_parameter/EQUAL_COLOR_TOLERANCE = 0.05
+shader_parameter/LUMINANCE_WEIGHT = 1.0
+shader_parameter/STEEP_DIRECTION_THRESHOLD = 2.0

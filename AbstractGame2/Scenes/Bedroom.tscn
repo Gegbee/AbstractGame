@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cos7x1pj46jkh"]
+
+[ext_resource type="PackedScene" uid="uid://caespfukdqcj" path="res://Scenes/Level.tscn" id="1_plfsf"]
+[ext_resource type="Texture2D" uid="uid://dr3v6ojmkqmga" path="res://Assets/BedroomSmooth.png" id="4_7fdby"]
+[ext_resource type="Texture2D" uid="uid://bfmi80k0dn0mi" path="res://Assets/BedS.png" id="4_skimb"]
+[ext_resource type="PackedScene" uid="uid://6d4ec2x3olrk" path="res://Scenes/Switcher/RoomTrigger.tscn" id="5_7bdho"]
+[ext_resource type="Texture2D" uid="uid://clmkyomeja0j4" path="res://Assets/PostersS.png" id="5_q5m1j"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="5_uykyi"]
+[ext_resource type="PackedScene" uid="uid://yds67rtyu6w2" path="res://Player/Camera.tscn" id="7_6at3a"]
+
+[node name="Bedroom" instance=ExtResource("1_plfsf")]
+
+[node name="RoomTrigger" parent="Doors" index="0" instance=ExtResource("5_7bdho")]
+position = Vector2(-59, 0)
+room_name = "LivingRoom"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="5"]
+z_index = -4
+position = Vector2(-25, -17)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_7fdby")
+
+[node name="BedS" type="Sprite2D" parent="." index="6"]
+z_index = 1
+position = Vector2(4, -8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_skimb")
+script = ExtResource("5_uykyi")
+shadow_offset = -2.0
+shadow_opacity = 0.2
+
+[node name="PostersS" type="Sprite2D" parent="." index="7"]
+z_index = -1
+position = Vector2(-2, -17)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_q5m1j")
+script = ExtResource("5_uykyi")
+shadow_offset = -1.0
+
+[node name="Camera" parent="." index="9" instance=ExtResource("7_6at3a")]
+position = Vector2(-26, -18)

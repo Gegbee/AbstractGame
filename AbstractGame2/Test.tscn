@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://beosd50bgp4lh"]
+
+[ext_resource type="Script" path="res://Scenes/Level.gd" id="1_npy44"]
+[ext_resource type="PackedScene" uid="uid://cgrdbl7wupw0h" path="res://Player/Player.tscn" id="2_0jna5"]
+[ext_resource type="PackedScene" uid="uid://cmaaybelt7bbo" path="res://Env/Bg.tscn" id="3_1qsdr"]
+[ext_resource type="PackedScene" uid="uid://6d4ec2x3olrk" path="res://Scenes/Switcher/RoomTrigger.tscn" id="3_5dhu5"]
+[ext_resource type="PackedScene" uid="uid://cxlkkg8ws2cd0" path="res://ScreenShaders.tscn" id="3_f2758"]
+[ext_resource type="PackedScene" uid="uid://yds67rtyu6w2" path="res://Player/Camera.tscn" id="6_fvt3t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt28i"]
+size = Vector2(80, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sy7ot"]
+size = Vector2(8, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cagmi"]
+size = Vector2(96, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spxdm"]
+size = Vector2(8, 40)
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_npy44")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground"]
+invert_enabled = true
+invert_border = 1.0
+polygon = PackedVector2Array(-40, -8, -40, -48, 40, -48, 40, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_qt28i")
+one_way_collision_margin = 10.0
+debug_color = Color(0, 0.6, 0.701961, 0.0784314)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
+position = Vector2(44, -28)
+shape = SubResource("RectangleShape2D_sy7ot")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, -52)
+shape = SubResource("RectangleShape2D_cagmi")
+debug_color = Color(0, 0.6, 0.701961, 0.0784314)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-44, -28)
+shape = SubResource("RectangleShape2D_spxdm")
+
+[node name="Player" parent="." instance=ExtResource("2_0jna5")]
+position = Vector2(8, -8)
+
+[node name="ScreenShaders" parent="." instance=ExtResource("3_f2758")]
+
+[node name="Bg" parent="." instance=ExtResource("3_1qsdr")]
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="RoomTrigger" parent="Doors" instance=ExtResource("3_5dhu5")]
+position = Vector2(-24, -8)
+room_name = "LivingRoom"
+door_index = 1
+
+[node name="Camera" parent="." instance=ExtResource("6_fvt3t")]
+position = Vector2(0, -18)

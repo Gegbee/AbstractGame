@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgrdbl7wupw0h"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_47qlc"]
+[ext_resource type="Texture2D" uid="uid://crj3jnmp614ik" path="res://Assets/PlayerStaticSmooth.png" id="2_7vw1y"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="3_ym8c7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yo1gx"]
+size = Vector2(12, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ol3oi"]
+size = Vector2(21.75, 21)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_47qlc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_yo1gx")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_ol3oi")
+
+[node name="PlayerStatic" type="Sprite2D" parent="."]
+position = Vector2(0.0350761, -12.4738)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_7vw1y")
+script = ExtResource("3_ym8c7")
+shadow_offset = -4.0
+shadow_opacity = 0.189
+
+[connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_area_entered"]
+[connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]
