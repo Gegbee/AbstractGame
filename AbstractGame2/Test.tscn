@@ -7,16 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://cxlkkg8ws2cd0" path="res://ScreenShaders.tscn" id="3_f2758"]
 [ext_resource type="PackedScene" uid="uid://yds67rtyu6w2" path="res://Player/Camera.tscn" id="6_fvt3t"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt28i"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlagb"]
 size = Vector2(80, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sy7ot"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1aefu"]
 size = Vector2(8, 40)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cagmi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpl55"]
 size = Vector2(96, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_spxdm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsigd"]
 size = Vector2(8, 40)
 
 [node name="Test" type="Node2D"]
@@ -33,22 +33,22 @@ polygon = PackedVector2Array(-40, -8, -40, -48, 40, -48, 40, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_qt28i")
+shape = SubResource("RectangleShape2D_rlagb")
 one_way_collision_margin = 10.0
 debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
 position = Vector2(44, -28)
-shape = SubResource("RectangleShape2D_sy7ot")
+shape = SubResource("RectangleShape2D_1aefu")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground"]
 position = Vector2(0, -52)
-shape = SubResource("RectangleShape2D_cagmi")
+shape = SubResource("RectangleShape2D_cpl55")
 debug_color = Color(0, 0.6, 0.701961, 0.0784314)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground"]
 position = Vector2(-44, -28)
-shape = SubResource("RectangleShape2D_spxdm")
+shape = SubResource("RectangleShape2D_wsigd")
 
 [node name="Player" parent="." instance=ExtResource("2_0jna5")]
 position = Vector2(8, -8)

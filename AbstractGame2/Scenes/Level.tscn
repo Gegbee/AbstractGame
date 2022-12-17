@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://caespfukdqcj"]
+[gd_scene load_steps=10 format=3 uid="uid://caespfukdqcj"]
 
 [ext_resource type="Script" path="res://Scenes/Level.gd" id="1_ld6dp"]
 [ext_resource type="PackedScene" uid="uid://cmaaybelt7bbo" path="res://Env/Bg.tscn" id="2_xpi0p"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d01bj6rqr3hcr" path="res://Scenes/UI/InteractIndicators.tscn" id="5_iaajc"]
 [ext_resource type="FontFile" uid="uid://cu60nooo3qxey" path="res://Assets/Pixellari.ttf" id="6_7nfk4"]
 [ext_resource type="Script" path="res://Scenes/UI/FPS.gd" id="6_ibcb5"]
+[ext_resource type="PackedScene" uid="uid://c3fu5r6ifseo7" path="res://Dialog/Dialog.tscn" id="8_0c7tl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0p8uf"]
 
@@ -14,8 +15,10 @@
 script = ExtResource("1_ld6dp")
 
 [node name="Bg" parent="." instance=ExtResource("2_xpi0p")]
+layer = -10
 
 [node name="ScreenShaders" parent="." instance=ExtResource("3_8fkil")]
+layer = 10
 
 [node name="Player" parent="." instance=ExtResource("4_xopiw")]
 
@@ -27,8 +30,10 @@ script = ExtResource("1_ld6dp")
 shape = SubResource("WorldBoundaryShape2D_0p8uf")
 
 [node name="InteractIndicators" parent="." instance=ExtResource("5_iaajc")]
+layer = 6
 
 [node name="FPS" type="CanvasLayer" parent="."]
+layer = 6
 script = ExtResource("6_ibcb5")
 
 [node name="Label" type="Label" parent="FPS"]
@@ -39,3 +44,5 @@ offset_bottom = 48.0
 theme_override_fonts/font = ExtResource("6_7nfk4")
 theme_override_font_sizes/font_size = 30
 text = "20 fps"
+
+[node name="Dialog" parent="." instance=ExtResource("8_0c7tl")]

@@ -7,7 +7,7 @@ const ACCEL = 1000.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") / 4
-
+var cur_npc = null
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -36,27 +36,33 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("interact"):
 		for area in $InteractArea.get_overlapping_areas():
-			if area.is_in_group('Door'):
+			if area.is_in_group('NPC'):
+				pass
+			elif area.is_in_group('Door'):
 				Global.last_scene_door_index = area.door_index
 				get_tree().current_scene.switch_scene(area.room_name)
-			elif area.is_in_group('NPC'):
-				pass
-
 
 func _on_interact_area_area_entered(area):
-	if area.is_in_group('Door'):
+	if area.is_in_group('NPC'):
+		if is_instance_valid(Global.indicators):
+			Global.indicators.update('converse', true)
+		if is_instance_valid(Global.dialog):
+			Global.dialog.pot_dialog = Global.convos[area.convo]
+			cur_npc = area
+	elif area.is_in_group('Door'):
 		if is_instance_valid(Global.indicators):
 			Global.indicators.update('door', true)
-	elif area.is_in_group('NPC'):
-		pass
-
 
 func _on_interact_area_area_exited(area):
-	if area.is_in_group('Door'):
+	if area.is_in_group('NPC'):
+		if is_instance_valid(Global.indicators):
+			Global.indicators.update('converse', false)
+		if is_instance_valid(Global.dialog):
+			if cur_npc == area:
+				Global.dialog.pot_dialog = []
+	elif area.is_in_group('Door'):
 		if is_instance_valid(Global.indicators):
 			Global.indicators.update('door', false)
-	elif area.is_in_group('NPC'):
-		pass

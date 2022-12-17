@@ -1,17 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://clhtwcbsijjqn"]
+[gd_scene load_steps=10 format=3 uid="uid://clhtwcbsijjqn"]
 
 [ext_resource type="PackedScene" uid="uid://caespfukdqcj" path="res://Scenes/Level.tscn" id="1_whr2d"]
 [ext_resource type="Texture2D" uid="uid://rkt6on7ekith" path="res://Assets/LivingRoomS.png" id="2_5ki3v"]
 [ext_resource type="PackedScene" uid="uid://6d4ec2x3olrk" path="res://Scenes/Switcher/RoomTrigger.tscn" id="2_mbkr7"]
 [ext_resource type="PackedScene" uid="uid://yds67rtyu6w2" path="res://Player/Camera.tscn" id="3_0x8sg"]
+[ext_resource type="Texture2D" uid="uid://jcqjd8nla1au" path="res://Assets/LivingRoomProps1S.png" id="5_gk6xp"]
+[ext_resource type="Texture2D" uid="uid://b7vwxgcvq3s3y" path="res://Assets/SisterS.png" id="6_1sq46"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="6_72d8p"]
+[ext_resource type="PackedScene" uid="uid://b250qbrp0b507" path="res://Env/TestLight.tscn" id="8_ijrvs"]
+[ext_resource type="PackedScene" uid="uid://mgxqrerskulu" path="res://NPC/NPC.tscn" id="9_s8isi"]
 
 [node name="LivingRoom" instance=ExtResource("1_whr2d")]
 
 [node name="LivingRoomS" type="Sprite2D" parent="." index="0"]
-z_index = -4
+z_index = -9
 position = Vector2(0, -17)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_5ki3v")
+
+[node name="NPC" parent="." index="1" instance=ExtResource("9_s8isi")]
+position = Vector2(88.0348, -0.176781)
+convo = "sister1"
 
 [node name="RoomTrigger" parent="Doors" index="0" instance=ExtResource("2_mbkr7")]
 position = Vector2(138, 0)
@@ -21,8 +30,34 @@ room_name = "Bedroom"
 position = Vector2(-90, 0)
 door_index = 1
 
-[node name="Camera" parent="." index="7" instance=ExtResource("3_0x8sg")]
+[node name="Camera" parent="." index="8" instance=ExtResource("3_0x8sg")]
 position = Vector2(0, -27)
 limit_left = -200
 limit_right = 200
 moving = true
+
+[node name="LivingRoomProps1s" type="Sprite2D" parent="." index="11"]
+z_index = -4
+position = Vector2(94.0526, -12.473)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_gk6xp")
+script = ExtResource("6_72d8p")
+shadow_offset = Vector2(2.597, 0)
+shadow_opacity = 0.218
+
+[node name="SisterS" type="Sprite2D" parent="." index="12"]
+z_index = -2
+position = Vector2(86.0675, -6.62669)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_1sq46")
+script = ExtResource("6_72d8p")
+shadow_offset = Vector2(1, 0)
+
+[node name="Light" parent="." index="13" instance=ExtResource("8_ijrvs")]
+position = Vector2(59, -36)
+
+[node name="Light2" parent="." index="14" instance=ExtResource("8_ijrvs")]
+position = Vector2(5, -36)
+
+[node name="Light3" parent="." index="15" instance=ExtResource("8_ijrvs")]
+position = Vector2(-60, -36)

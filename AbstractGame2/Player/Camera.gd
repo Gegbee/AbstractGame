@@ -15,7 +15,7 @@ func _ready():
 			await get_tree().process_frame
 			position_smoothing_enabled = true
 			
-func _process(delta):
+func _process(_delta):
 	if moving:
 		if is_instance_valid(pot_player):
 			position = pot_player.global_position + Vector2(0, -18)

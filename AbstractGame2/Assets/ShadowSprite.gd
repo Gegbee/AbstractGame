@@ -2,7 +2,7 @@ extends Sprite2D
 
 class_name ShadowSprite
 
-@export var shadow_offset : float = 4.0
+@export var shadow_offset : Vector2 = Vector2()
 @export_range (0.0, 1.0) var shadow_opacity : float = 0.5
 var shadow : Sprite2D
 
@@ -13,11 +13,12 @@ func _ready():
 		shadow.texture = texture
 	shadow.modulate = "000000"
 	shadow.modulate.a = shadow_opacity
-	shadow.z_index = z_index-2
+	shadow.z_as_relative = false
+	shadow.z_index = z_index-1
 	
-func _process(delta):
+func _process(_delta):
 	if shadow.texture:
-		shadow.global_position = global_position - Vector2(-shadow_offset, 0)
+		shadow.global_position = global_position + shadow_offset
 	else:
 		if texture:
 			shadow.texture = texture

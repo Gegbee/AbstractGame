@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxlkkg8ws2cd0"]
+[gd_scene load_steps=7 format=3 uid="uid://cxlkkg8ws2cd0"]
 
 [ext_resource type="Texture2D" uid="uid://b2lj3g43ti6g7" path="res://Assets/Halftone-Dither-Pattern.png" id="1"]
 [ext_resource type="Shader" path="res://ScreenShaders.gdshader" id="2_0ckft"]
+[ext_resource type="Material" uid="uid://0odpcvv6cged" path="res://Env/Crt.tres" id="3_3hehy"]
 
 [sub_resource type="Shader" id="1"]
 code = "shader_type canvas_item;
@@ -232,14 +233,8 @@ shader_parameter/yellow_pattern_rotation = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x6qg7"]
 shader = ExtResource("2_0ckft")
-shader_parameter/blueVal = 1.0
-shader_parameter/brightness = 0.0
-shader_parameter/contrast = 1.0
-shader_parameter/greenVal = 1.0
-shader_parameter/redVal = 1.0
-shader_parameter/saturation = 1.0
-shader_parameter/tint_color = Color(0.945098, 0.568627, 1, 1)
-shader_parameter/tint_effect_factor = 0.43
+shader_parameter/vignette_intensity = 0.428
+shader_parameter/vignette_opacity = 1.0
 
 [node name="ScreenShaders" type="CanvasLayer"]
 layer = 5
@@ -252,8 +247,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect3" type="ColorRect" parent="."]
 visible = false
+material = ExtResource("3_3hehy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 11
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_x6qg7")
 anchors_preset = 15
 anchor_right = 1.0

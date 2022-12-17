@@ -1,12 +1,8 @@
 extends CanvasLayer
 
 #premature dialog structure: ["dialog goes here", "name of speaker", picture:Texture]
-var test_dialog = [
-	["sir, your kid is dying", "jeff doctor", true],
-	["uh... can you shut the fuck, I'm smoking a ciggy.", "craig thompson", true],
-	["jesus man do you not care about your child? He has second hand smoke because of your cig addiction!", "jeff doctor", true]
-]
-onready var ltween = $LabelTween
+
+var test_dialog = Global.convos["test_dialog"]
 
 enum {
 	NONE,
@@ -15,41 +11,37 @@ enum {
 }
 var state : int = NONE
 var set_dialog : Array = []
-var low = false
-var cinematic_mode: bool = false
+var pot_dialog : Array = []
 var current_dialog = []
+var current_step := -1
+const STEP_SPEED : float = 0.04
 
-onready var t = $Control/VBoxContainer/CenterContainer/VBoxContainer/Dialog
-onready var n = $Control/VBoxContainer/CenterContainer/VBoxContainer/Name
-onready var p = $Control/VBoxContainer/TextureRect
-onready var a = $AnimationPlayer
-
-var buffer_interact : int = 0
+@onready var t = $Control/HBoxContainer/CenterContainer/VBoxContainer/Dialog
+@onready var n = $Control/HBoxContainer/CenterContainer/VBoxContainer/Name
+@onready var p = $Control/HBoxContainer/TextureRect
+@onready var a = $AnimationPlayer
 
 # shit to do with audio
 var audio_bit_frequency = 0.1 # frequency of how often an audio bit plays in a second when a character is speaking
 var pitch_range = [0.2, 1.8]
-onready var audio_player = $AudioStreamPlayer
+@onready var audio_player = $AudioStreamPlayer
 
 
 func _ready():
 	Global.dialog = self
 	t.text = ""
 	n.text = ""
-	p.rect_pivot_offset = p.rect_position/2
+	p.texture = null
+	p.pivot_offset = p.position/2
 	randomize()
 	
 func _process(_delta):
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("dialog"):
 		print(len(set_dialog))
 		if state == NONE:
-			start_conversation(test_dialog.duplicate())
+			start_conversation(pot_dialog.duplicate())
 		else:
 			nextAction()
-#	if t.percent_visible == 1:
-#		state = IDLE
-	if t.percent_visible >= 1:
-		current_dialog = []
 		
 func runDialog(new_dialog : Array):
 	state = RUNNING
@@ -61,38 +53,23 @@ func runDialog(new_dialog : Array):
 			p.texture = Global.portraits[new_dialog[1]]
 			a.play("PortraitBounce")
 	n.text = new_dialog[1]
-	t.percent_visible = 0
+	t.visible_characters = 0
 	t.text = new_dialog[0]
-	ltween.interpolate_property(t, "percent_visible", 0, 1, 
-	float(len(t.text)) / 30.0, 
-	Tween.TRANS_LINEAR, 
-	Tween.EASE_OUT)
-		
-	ltween.start()
-	ltween.start()
-	
-	# audio stuff
-	$AudioTimer.start(audio_bit_frequency)
-	play_audio_bit()
-		
+	$StepTimer.start(STEP_SPEED)
+
 func finishRunningDialog():
-	ltween.reset_all()
-	ltween.remove_all()
 	state = IDLE
-	var balls = false if t.percent_visible < 1 else true
-	t.percent_visible = 1
-	return balls
+	$StepTimer.stop()
+	t.visible_characters = -1
 	
 func nextAction():
 	if state == RUNNING:
-		var finished = finishRunningDialog()
-		if finished:
-			nextAction()
+		finishRunningDialog()
 	elif state == IDLE:
 		if len(set_dialog) > 0:
 			runDialog(set_dialog[0])
 			current_dialog = set_dialog[0]
-			set_dialog.remove(0)
+			set_dialog.remove_at(0)
 		else:
 			state = NONE
 			n.text = ""
@@ -107,15 +84,18 @@ func start_conversation(convo : Array):
 		set_dialog = convo
 		nextAction()
 
-
-func _on_AudioTimer_timeout():
-	play_audio_bit()
-	if len(current_dialog) > 0:
-		$AudioTimer.start(audio_bit_frequency)
-
 func play_audio_bit():
 	if len(current_dialog) > 0:
-		Global.audio_bits[current_dialog[1]].shuffle()
-		$AudioStreamPlayer.stream = Global.audio_bits[current_dialog[1]][0]
-		$AudioStreamPlayer.pitch_scale = rand_range(pitch_range[0], pitch_range[1])
-		$AudioStreamPlayer.play()
+		if len(Global.audio_bits[current_dialog[1]]) > 1:
+			Global.audio_bits[current_dialog[1]].shuffle()
+			$AudioStreamPlayer.stream = Global.audio_bits[current_dialog[1]][0]
+			$AudioStreamPlayer.pitch_scale = randf_range(pitch_range[0], pitch_range[1])
+			$AudioStreamPlayer.play()
+
+func _on_step_timer_timeout():
+	t.visible_characters += 1
+	play_audio_bit()
+	if t.visible_characters == len(t.text):
+		finishRunningDialog()
+	else:
+		$StepTimer.start(STEP_SPEED)

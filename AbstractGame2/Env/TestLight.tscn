@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://b250qbrp0b507"]
+
+[ext_resource type="Texture2D" uid="uid://cp5sxo1ecb60n" path="res://Assets/RoundLight.png" id="1_kye1x"]
+[ext_resource type="Texture2D" uid="uid://chulshi4sowkq" path="res://Assets/TrapLight.png" id="2_ngsit"]
+[ext_resource type="Texture2D" uid="uid://c41m4sb0n4upm" path="res://Assets/LampS.png" id="3_w57y5"]
+
+[node name="Light" type="Node2D"]
+position = Vector2(0.0625, -0.21875)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 7)
+texture = ExtResource("1_kye1x")
+texture_scale = 0.4
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-7.30568, -17.3728)
+texture = ExtResource("2_ngsit")
+texture_scale = 0.2
+
+[node name="TrapLight" type="Sprite2D" parent="."]
+position = Vector2(0.0800018, 18.6849)
+scale = Vector2(0.215668, 0.203846)
+texture = ExtResource("2_ngsit")
+
+[node name="LampS2" type="Sprite2D" parent="."]
+position = Vector2(-0.0760002, 4.6952)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_w57y5")

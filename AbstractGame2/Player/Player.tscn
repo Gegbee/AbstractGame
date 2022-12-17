@@ -28,8 +28,8 @@ position = Vector2(0.0350761, -12.4738)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_7vw1y")
 script = ExtResource("3_ym8c7")
-shadow_offset = -4.0
-shadow_opacity = 0.189
+shadow_offset = Vector2(4, 0)
+shadow_opacity = 0.205
 
 [connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_area_entered"]
 [connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]
