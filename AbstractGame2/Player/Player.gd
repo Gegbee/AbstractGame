@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -90.0
 const ACCEL = 1000.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") / 4
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var cur_npc = null
 
 func _physics_process(delta):
@@ -33,9 +33,13 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, delta * ACCEL)
 
+#	for i in get_slide_collision_count():
+#		var collision = get_slide_collision(i)
+#		if collision.get_collider() is RigidBody2D:
+#			collision.get_collider().apply_central_impulse(-collision.get_normal() * 10.0)
+
 	move_and_slide()
-
-
+	
 func _input(_event):
 	if Input.is_action_just_pressed("interact"):
 		for area in $InteractArea.get_overlapping_areas():

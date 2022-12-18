@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc8icugodicld"]
+
+[ext_resource type="Texture2D" uid="uid://dq04d58a3rm31" path="res://Assets/BasketBall.png" id="1_vowq8"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="2_fys5r"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ixg3"]
+bounce = 0.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ygj16"]
+radius = 2.5
+
+[node name="Ball" type="RigidBody2D" groups=["Item"]]
+physics_material_override = SubResource("PhysicsMaterial_4ixg3")
+linear_damp = 16.527
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ygj16")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.128, 0.131)
+texture = ExtResource("1_vowq8")
+script = ExtResource("2_fys5r")
+shadow_offset = Vector2(3, 0)
+shadow_opacity = 0.225

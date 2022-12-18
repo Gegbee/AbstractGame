@@ -11,5 +11,3 @@ script = ExtResource("1_wbi3d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_8010n")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]

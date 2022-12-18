@@ -8,7 +8,7 @@
 size = Vector2(12, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ol3oi"]
-size = Vector2(21.75, 21)
+size = Vector2(21.75, 21.5)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_47qlc")
@@ -20,7 +20,7 @@ shape = SubResource("RectangleShape2D_yo1gx")
 [node name="InteractArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
-position = Vector2(0, -11)
+position = Vector2(0, -10.75)
 shape = SubResource("RectangleShape2D_ol3oi")
 
 [node name="PlayerStatic" type="Sprite2D" parent="."]

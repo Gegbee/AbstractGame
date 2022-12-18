@@ -8,7 +8,8 @@ extends CanvasLayer
 var indicator_types = {
 	"door" : "[Z] Door",
 	"converse" : "[X] Talk",
-	"continue_converse" : "[X] Continue"
+	"continue_converse" : "[X] Continue",
+	"item" : "[C] Use item"
 }
 
 func _ready():

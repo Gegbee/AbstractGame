@@ -3,31 +3,16 @@
 [ext_resource type="Script" path="res://Scenes/Level.gd" id="1_ld6dp"]
 [ext_resource type="PackedScene" uid="uid://cmaaybelt7bbo" path="res://Env/Bg.tscn" id="2_xpi0p"]
 [ext_resource type="PackedScene" uid="uid://cxlkkg8ws2cd0" path="res://ScreenShaders.tscn" id="3_8fkil"]
-[ext_resource type="PackedScene" uid="uid://cgrdbl7wupw0h" path="res://Player/Player.tscn" id="4_xopiw"]
 [ext_resource type="PackedScene" uid="uid://d01bj6rqr3hcr" path="res://Scenes/UI/InteractIndicators.tscn" id="5_iaajc"]
 [ext_resource type="FontFile" uid="uid://cu60nooo3qxey" path="res://Assets/Pixellari.ttf" id="6_7nfk4"]
 [ext_resource type="Script" path="res://Scenes/UI/FPS.gd" id="6_ibcb5"]
 [ext_resource type="PackedScene" uid="uid://c3fu5r6ifseo7" path="res://Dialog/Dialog.tscn" id="8_0c7tl"]
+[ext_resource type="PackedScene" uid="uid://d1l1qecnybaw8" path="res://Player/RigidPlayer.tscn" id="8_rbryf"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0p8uf"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ld6dp")
-
-[node name="Bg" parent="." instance=ExtResource("2_xpi0p")]
-layer = -10
-
-[node name="ScreenShaders" parent="." instance=ExtResource("3_8fkil")]
-layer = 10
-
-[node name="Player" parent="." instance=ExtResource("4_xopiw")]
-
-[node name="Doors" type="Node" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_0p8uf")
 
 [node name="InteractIndicators" parent="." instance=ExtResource("5_iaajc")]
 layer = 6
@@ -46,3 +31,18 @@ theme_override_font_sizes/font_size = 30
 text = "20 fps"
 
 [node name="Dialog" parent="." instance=ExtResource("8_0c7tl")]
+
+[node name="Bg" parent="." instance=ExtResource("2_xpi0p")]
+layer = -10
+
+[node name="ScreenShaders" parent="." instance=ExtResource("3_8fkil")]
+layer = 10
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_0p8uf")
+
+[node name="Player" parent="." instance=ExtResource("8_rbryf")]

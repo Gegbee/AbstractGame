@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1l1qecnybaw8"]
+
+[ext_resource type="Script" path="res://Player/RigidPlayer.gd" id="1_gd5j3"]
+[ext_resource type="Texture2D" uid="uid://crj3jnmp614ik" path="res://Assets/PlayerStaticSmooth.png" id="2_lwj3j"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="3_u67qd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_embmi"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yo1gx"]
+size = Vector2(9, 14.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ol3oi"]
+size = Vector2(24, 27.75)
+
+[node name="Player" type="RigidBody2D" groups=["Player"]]
+physics_material_override = SubResource("PhysicsMaterial_embmi")
+custom_integrator = true
+continuous_cd = 2
+max_contacts_reported = 5
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_gd5j3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.125)
+shape = SubResource("RectangleShape2D_yo1gx")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+position = Vector2(0, -7.875)
+shape = SubResource("RectangleShape2D_ol3oi")
+
+[node name="PlayerStatic" type="Sprite2D" parent="."]
+position = Vector2(0.0350761, -12.4738)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_lwj3j")
+script = ExtResource("3_u67qd")
+shadow_offset = Vector2(4, 0)
+shadow_opacity = 0.205
+
+[node name="ItemHolder" type="Node2D" parent="."]
+position = Vector2(6, -7)
+
+[connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_area_entered"]
+[connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]
