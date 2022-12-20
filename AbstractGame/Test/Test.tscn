@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/AbstractMockup.png" type="Texture" id=1]
 [ext_resource path="res://TestCamera.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/download.png" type="Texture" id=6]
 [ext_resource path="res://Assets/download (1).png" type="Texture" id=7]
 [ext_resource path="res://Assets/download (4).png" type="Texture" id=8]
+[ext_resource path="res://Assets/Bedroom.png" type="Texture" id=9]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -47,3 +48,7 @@ script = ExtResource( 2 )
 environment = SubResource( 1 )
 
 [node name="Dialog" parent="." instance=ExtResource( 5 )]
+
+[node name="Bedroom" type="Sprite" parent="."]
+position = Vector2( 462, 339 )
+texture = ExtResource( 9 )

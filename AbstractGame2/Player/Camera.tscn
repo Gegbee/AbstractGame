@@ -5,6 +5,5 @@
 [node name="Camera" type="Camera2D"]
 position = Vector2(0, -12)
 current = true
-zoom = Vector2(8, 8)
 limit_smoothed = true
 script = ExtResource("1_njh24")

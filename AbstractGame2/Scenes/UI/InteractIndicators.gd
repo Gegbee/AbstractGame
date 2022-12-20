@@ -7,9 +7,10 @@ extends CanvasLayer
 
 var indicator_types = {
 	"door" : "[Z] Door",
-	"converse" : "[X] Talk",
-	"continue_converse" : "[X] Continue",
-	"item" : "[C] Use item"
+	"converse" : "[Z] Talk",
+	"continue_converse" : "[Z] Continue",
+	"item_pickup" : "[C] Use item",
+	"item_use" : "[WASD + C] Throw"
 }
 
 func _ready():

@@ -36,7 +36,7 @@ func _ready():
 	randomize()
 	
 func _process(_delta):
-	if Input.is_action_just_pressed("dialog"):
+	if Input.is_action_just_pressed("interact_dialog"):
 		print(len(set_dialog))
 		if state == NONE:
 			start_conversation(pot_dialog.duplicate())

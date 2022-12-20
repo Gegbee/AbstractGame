@@ -11,14 +11,14 @@ func _ready():
 			pot_player = get_parent().get_node("Player")
 			position_smoothing_enabled = false
 			await get_tree().process_frame
-			position = pot_player.global_position + Vector2(0, -18)
+			position = pot_player.global_position + Vector2(0, -18 * 8)
 			await get_tree().process_frame
 			position_smoothing_enabled = true
 			
 func _process(_delta):
 	if moving:
 		if is_instance_valid(pot_player):
-			position = pot_player.global_position + Vector2(0, -18)
+			position = pot_player.global_position + Vector2(0, -18 * 8)
 			
 func _input(event):
 	if event is InputEventMouseMotion:

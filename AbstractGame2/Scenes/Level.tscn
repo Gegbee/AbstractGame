@@ -38,11 +38,11 @@ layer = -10
 [node name="ScreenShaders" parent="." instance=ExtResource("3_8fkil")]
 layer = 10
 
-[node name="Doors" type="Node" parent="."]
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_0p8uf")
+
+[node name="Doors" type="Node" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("8_rbryf")]
