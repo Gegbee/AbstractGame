@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://NPC/NPC.gd" id="1_wbi3d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8010n"]
-size = Vector2(29, 16)
+size = Vector2(226.75, 253.5)
 
 [node name="NPC" type="Area2D" groups=["NPC"]]
 script = ExtResource("1_wbi3d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(-1, -126)
 shape = SubResource("RectangleShape2D_8010n")

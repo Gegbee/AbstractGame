@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsjs00fbhkktv"]
+
+[ext_resource type="Texture2D" uid="uid://bkfxekrmvijrw" path="res://Assets/Chair.png" id="1_x8ea0"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="2_ikbpq"]
+
+[node name="Chair" type="RigidBody2D" groups=["Item"]]
+z_index = 2
+position = Vector2(-144, -53)
+mass = 3.0
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(3, 27)
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(26, -26, 24, 25, -23, 25, -30, -80, -11, -79, -11, -26)
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+position = Vector2(5, -1)
+texture = ExtResource("1_x8ea0")
+script = ExtResource("2_ikbpq")
+shadow_offset = Vector2(10, 0)
+shadow_opacity = 0.205

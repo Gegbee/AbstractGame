@@ -1,9 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://yds67rtyu6w2"]
-
-[ext_resource type="Script" path="res://Player/Camera.gd" id="1_njh24"]
+[gd_scene format=3 uid="uid://yds67rtyu6w2"]
 
 [node name="Camera" type="Camera2D"]
 position = Vector2(0, -12)
 current = true
 limit_smoothed = true
-script = ExtResource("1_njh24")

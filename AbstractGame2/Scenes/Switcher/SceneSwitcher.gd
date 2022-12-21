@@ -5,6 +5,7 @@ var scenes_in_game : Dictionary = {
 	"Bedroom" : preload("res://Scenes/Bedroom.tscn"),
 	"LivingRoom" : preload("res://Scenes/LivingRoom.tscn"),
 	"DiningRoom" : preload("res://Scenes/DiningRoom.tscn"),
+	"Outside" : preload("res://Scenes/Outside.tscn")
 }
 
 var cur_scene_name : String = ""
@@ -43,7 +44,7 @@ func change_state():
 		if cur_scene != null:
 			cur_scene.free()
 		cur_scene = scenes_in_game[cur_scene_name].instantiate()
-		add_child(cur_scene)
+		call_deferred("add_child", cur_scene)
 		change_state()
 	elif state == TRANS_OUT:
 		state = IN_SCENE

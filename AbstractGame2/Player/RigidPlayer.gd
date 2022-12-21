@@ -1,11 +1,11 @@
 extends RigidBody2D
 
 const SPEED = 40.0 * 6
-const JUMP_VELOCITY = -90.0 * 5
+const JUMP_VELOCITY = -90.0 * 7
 const ACCEL = 1000.0 * 6
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 2
 var is_on_floor = false
 
 var cur_npc = null
@@ -51,11 +51,10 @@ func _integrate_forces(state):
 func _input(_event):
 	if Input.is_action_just_pressed("interact"):
 		for area in $InteractArea.get_overlapping_areas():
-			if area.is_in_group('NPC'):
-				pass
-			elif area.is_in_group('Door'):
+			if area.is_in_group('Door'):
 				Global.last_scene_door_index = area.door_index
 				get_tree().current_scene.switch_scene(area.room_name)
+				
 				
 	# DROPPING AND PICKING UP ITEM
 	if Input.is_action_just_pressed("interact_item"):
@@ -68,11 +67,12 @@ func _input(_event):
 				Global.indicators.update('item_use', false)
 		for body in $InteractArea.get_overlapping_bodies():
 			if body.is_in_group('Item'):
-				cur_item = body
-				cur_item.gravity_scale = 0.0
-				cur_item.get_node("CollisionShape2D").disabled = true
-				if is_instance_valid(Global.indicators):
-					Global.indicators.update('item_use', true)
+				if cur_item == null:
+					cur_item = body
+					cur_item.gravity_scale = 0.0
+					cur_item.get_node("CollisionShape2D").disabled = true
+					if is_instance_valid(Global.indicators):
+						Global.indicators.update('item_use', true)
 					
 					
 func _on_interact_area_area_entered(area):

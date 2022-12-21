@@ -1,44 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://n8a2jebb224q"]
+[gd_scene load_steps=9 format=3 uid="uid://n8a2jebb224q"]
 
 [ext_resource type="PackedScene" uid="uid://caespfukdqcj" path="res://Scenes/Level.tscn" id="1_27svt"]
-[ext_resource type="Texture2D" uid="uid://dsgpvonil3tah" path="res://Assets/DiningRoomS.png" id="2_pbs2g"]
+[ext_resource type="Texture2D" uid="uid://dg58jii74syxu" path="res://Assets/DiningRoomBg.png" id="2_r8c8v"]
 [ext_resource type="PackedScene" uid="uid://6d4ec2x3olrk" path="res://Scenes/Switcher/RoomTrigger.tscn" id="3_vfc8i"]
-[ext_resource type="Texture2D" uid="uid://cp5sxo1ecb60n" path="res://Assets/RoundLight.png" id="4_jjfk6"]
-[ext_resource type="Texture2D" uid="uid://chulshi4sowkq" path="res://Assets/TrapLight.png" id="5_3gigb"]
+[ext_resource type="Texture2D" uid="uid://wsc2sqp274cc" path="res://Assets/Table.png" id="5_4vmyb"]
 [ext_resource type="PackedScene" uid="uid://yds67rtyu6w2" path="res://Player/Camera.tscn" id="6_tkqlu"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="6_xckb1"]
+[ext_resource type="PackedScene" uid="uid://dsjs00fbhkktv" path="res://Env/Chair.tscn" id="7_h1vwj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bcn8"]
+size = Vector2(196, 77)
 
 [node name="Level" instance=ExtResource("1_27svt")]
 
 [node name="DiningRoomS" type="Sprite2D" parent="." index="0"]
-position = Vector2(0, -26)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_pbs2g")
-
-[node name="Light" type="Node2D" parent="." index="1"]
-position = Vector2(2, -41)
-
-[node name="PointLight2D" type="PointLight2D" parent="Light" index="0"]
-energy = 0.47
-texture = ExtResource("4_jjfk6")
-texture_scale = 0.81
-
-[node name="TrapLight" type="Sprite2D" parent="Light" index="1"]
-modulate = Color(1, 1, 1, 0.415686)
-position = Vector2(0.999996, 32)
-scale = Vector2(0.477399, 0.455769)
-texture = ExtResource("5_3gigb")
+z_index = -9
+position = Vector2(0, -221)
+texture = ExtResource("2_r8c8v")
 
 [node name="RoomTrigger" parent="Doors" index="0" instance=ExtResource("3_vfc8i")]
-position = Vector2(53, 0)
+position = Vector2(357, 0)
 room_name = "LivingRoom"
 door_index = 1
 
 [node name="RoomTrigger2" parent="Doors" index="1" instance=ExtResource("3_vfc8i")]
-position = Vector2(-47, 0)
+position = Vector2(-347, 0)
 room_name = "Outside"
 
-[node name="Player" parent="." index="9"]
-position = Vector2(26, 0)
+[node name="Player" parent="." index="8"]
+position = Vector2(177, 0)
 
-[node name="Camera" parent="." index="10" instance=ExtResource("6_tkqlu")]
-position = Vector2(0, -18)
+[node name="Camera" parent="." index="9" instance=ExtResource("6_tkqlu")]
+position = Vector2(2, -194)
+
+[node name="Table" type="StaticBody2D" parent="." index="10"]
+
+[node name="Table" type="Sprite2D" parent="Table" index="0"]
+z_index = 4
+position = Vector2(0, -38)
+texture = ExtResource("5_4vmyb")
+script = ExtResource("6_xckb1")
+shadow_offset = Vector2(32, 0)
+shadow_opacity = 0.189
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table" index="1"]
+position = Vector2(0, -37.5)
+shape = SubResource("RectangleShape2D_3bcn8")
+
+[node name="Chair" parent="." index="11" instance=ExtResource("7_h1vwj")]
+
+[node name="Chair2" parent="." index="12" instance=ExtResource("7_h1vwj")]
+position = Vector2(149, -53)
+scale = Vector2(-1, 1)
