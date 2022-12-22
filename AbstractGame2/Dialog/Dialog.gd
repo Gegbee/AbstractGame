@@ -35,13 +35,10 @@ func _ready():
 	p.pivot_offset = p.position/2
 	randomize()
 	
-func _process(_delta):
-	if Input.is_action_just_pressed("interact_dialog"):
-		print(len(set_dialog))
-		if state == NONE:
-			start_conversation(pot_dialog.duplicate())
-		else:
-			nextAction()
+#func _process(_delta):
+#	if Input.is_action_just_pressed("interact_dialog"):
+#		# print(len(set_dialog))
+#		next_input()
 		
 func runDialog(new_dialog : Array):
 	state = RUNNING
@@ -67,6 +64,7 @@ func nextAction():
 		finishRunningDialog()
 	elif state == IDLE:
 		if len(set_dialog) > 0:
+			t.visible_characters = 0
 			runDialog(set_dialog[0])
 			current_dialog = set_dialog[0]
 			set_dialog.remove_at(0)
@@ -77,18 +75,25 @@ func nextAction():
 			p.texture = null
 			if is_instance_valid(Global.player):
 				Global.player._set_disabled(false)
+				Global.player.update_dialog()
 	elif state == NONE:
 		state = IDLE
 		nextAction()
 		
 func start_conversation(convo : Array):
-	if len(set_dialog) <= 0:
+	if len(set_dialog) <= 0 and len(convo) > 0:
 		if is_instance_valid(Global.player):
 			Global.player._set_disabled(true)
 			Global.player.cur_npc.cur_convo_num += 1
 		set_dialog = convo
 		nextAction()
 
+func next_input():
+	if state == NONE:
+		start_conversation(pot_dialog.duplicate())
+	else:
+		nextAction()
+		
 func play_audio_bit():
 	if len(current_dialog) > 0:
 		if len(Global.audio_bits[current_dialog[1]]) > 1:

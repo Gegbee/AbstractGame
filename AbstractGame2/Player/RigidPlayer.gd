@@ -56,7 +56,7 @@ func _process(delta):
 func _integrate_forces(state):
 	is_on_floor = false
 	for i in range(0, state.get_contact_count()):
-		if state.get_contact_local_normal(i) == Vector2(0, -1):
+		if state.get_contact_local_normal(i).dot(Vector2.UP) > 0:
 			is_on_floor = true
 			
 	if not is_on_floor:
@@ -85,14 +85,23 @@ func _integrate_forces(state):
 		
 		
 func _input(_event):
-	if disabled:
-		return
 	if Input.is_action_just_pressed("interact"):
+		var npc_area = null
+		var door_area = null
 		for area in $InteractArea.get_overlapping_areas():
-			if area.is_in_group('Door') and !area.locked:
-				Global.last_scene_door_index = area.door_index
-				get_tree().current_scene.switch_scene(area.room_name)
-				
+			if area.is_in_group('NPC'):
+				npc_area = area
+			elif area.is_in_group('Door') and !area.locked:
+				door_area = area
+		if npc_area:
+			if is_instance_valid(Global.dialog):
+				Global.dialog.next_input()
+		elif door_area:
+			if !disabled:
+				Global.last_scene_door_index = door_area.door_index
+				get_tree().current_scene.switch_scene(door_area.room_name)
+		else:
+			pass
 				
 	# DROPPING AND PICKING UP ITEM
 	if Input.is_action_just_pressed("interact_item"):
@@ -117,14 +126,8 @@ func _on_interact_area_area_entered(area):
 	if disabled:
 		return
 	if area.is_in_group('NPC'):
-		if is_instance_valid(Global.dialog):
-			var convo : int = 0
-			if area.cur_convo_num >= area.num_of_convos:
-				convo = area.num_of_convos - 1
-			else:
-				convo = area.cur_convo_num
-			Global.dialog.pot_dialog = Global.convos[area.convo + "-" + str(convo)]
-			cur_npc = area
+		cur_npc = area
+		update_dialog()
 		if area.force_dialog and area.cur_convo_num == 0:
 			if is_instance_valid(Global.dialog):
 				#_set_disabled(true)
@@ -135,6 +138,15 @@ func _on_interact_area_area_entered(area):
 		if is_instance_valid(Global.indicators):
 			Global.indicators.update('door', true)
 
+func update_dialog():
+	if is_instance_valid(Global.dialog):
+		var convo : int = 0
+		if cur_npc.cur_convo_num >= cur_npc.num_of_convos:
+			convo = cur_npc.num_of_convos - 1
+		else:
+			convo = cur_npc.cur_convo_num
+		Global.dialog.pot_dialog = Global.convos[cur_npc.convo + "-" + str(convo)]
+	
 func _on_interact_area_area_exited(area):
 	if disabled:
 		return

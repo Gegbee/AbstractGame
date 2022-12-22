@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dsjs00fbhkktv" path="res://Env/Chair.tscn" id="7_h1vwj"]
 [ext_resource type="Texture2D" uid="uid://bo3lhrjwqww4" path="res://Assets/Key.png" id="9_ic33o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi5xu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2shkc"]
 size = Vector2(196, 77)
 
 [node name="Level" instance=ExtResource("1_27svt")]
@@ -50,7 +50,7 @@ shadow_opacity = 0.189
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table" index="1"]
 position = Vector2(0, -37.5)
-shape = SubResource("RectangleShape2D_qi5xu")
+shape = SubResource("RectangleShape2D_2shkc")
 
 [node name="Chair" parent="." index="11" instance=ExtResource("7_h1vwj")]
 
@@ -58,7 +58,7 @@ shape = SubResource("RectangleShape2D_qi5xu")
 position = Vector2(149, -53)
 scale = Vector2(-1, 1)
 
-[node name="Key" type="RigidBody2D" parent="." index="14" groups=["Item", "Key"]]
+[node name="Key" type="RigidBody2D" parent="." index="13" groups=["Item", "Key"]]
 position = Vector2(-2, -114)
 metadata/_edit_group_ = true
 
