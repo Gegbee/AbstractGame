@@ -75,12 +75,17 @@ func nextAction():
 			n.text = ""
 			t.text = ""
 			p.texture = null
+			if is_instance_valid(Global.player):
+				Global.player._set_disabled(false)
 	elif state == NONE:
 		state = IDLE
 		nextAction()
 		
 func start_conversation(convo : Array):
 	if len(set_dialog) <= 0:
+		if is_instance_valid(Global.player):
+			Global.player._set_disabled(true)
+			Global.player.cur_npc.cur_convo_num += 1
 		set_dialog = convo
 		nextAction()
 

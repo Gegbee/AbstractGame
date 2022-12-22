@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://clhtwcbsijjqn"]
+[gd_scene load_steps=10 format=3 uid="uid://clhtwcbsijjqn"]
 
 [ext_resource type="PackedScene" uid="uid://caespfukdqcj" path="res://Scenes/Level.tscn" id="1_whr2d"]
 [ext_resource type="Texture2D" uid="uid://d3ae8q6f3410d" path="res://Assets/LivingRoomBg.png" id="2_dhxlb"]
 [ext_resource type="PackedScene" uid="uid://6d4ec2x3olrk" path="res://Scenes/Switcher/RoomTrigger.tscn" id="2_mbkr7"]
 [ext_resource type="PackedScene" uid="uid://yds67rtyu6w2" path="res://Player/Camera.tscn" id="3_0x8sg"]
-[ext_resource type="Texture2D" uid="uid://b7vwxgcvq3s3y" path="res://Assets/SisterS.png" id="6_1sq46"]
 [ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="6_72d8p"]
 [ext_resource type="Texture2D" uid="uid://dt38fvqsfldjr" path="res://Assets/Couch.png" id="6_uid31"]
 [ext_resource type="Texture2D" uid="uid://v774n6jev611" path="res://Assets/TV.png" id="8_1b4gb"]
@@ -21,6 +20,8 @@ texture = ExtResource("2_dhxlb")
 [node name="NPC" parent="." index="1" instance=ExtResource("9_s8isi")]
 position = Vector2(248, -3)
 convo = "sister1"
+num_of_convos = 2
+force_dialog = true
 
 [node name="Camera" parent="." index="8" instance=ExtResource("3_0x8sg")]
 position = Vector2(126, -144)
@@ -40,7 +41,7 @@ position = Vector2(-186, 0)
 
 [node name="LivingRoomProps1s" type="Sprite2D" parent="." index="11"]
 z_index = -4
-position = Vector2(190, -60)
+position = Vector2(189, -58)
 texture = ExtResource("6_uid31")
 script = ExtResource("6_72d8p")
 shadow_offset = Vector2(-32, 0)
@@ -54,16 +55,8 @@ script = ExtResource("6_72d8p")
 shadow_offset = Vector2(14, 0)
 shadow_opacity = 0.366
 
-[node name="SisterS" type="Sprite2D" parent="." index="13"]
-z_index = -2
-position = Vector2(246, -71)
-scale = Vector2(2.26166, 2.34478)
-texture = ExtResource("6_1sq46")
-script = ExtResource("6_72d8p")
-shadow_offset = Vector2(1, 0)
-
-[node name="Light" parent="." index="14" instance=ExtResource("10_6cwgx")]
+[node name="Light" parent="." index="13" instance=ExtResource("10_6cwgx")]
 position = Vector2(386, -293)
 
-[node name="Light2" parent="." index="15" instance=ExtResource("10_6cwgx")]
+[node name="Light2" parent="." index="14" instance=ExtResource("10_6cwgx")]
 position = Vector2(-44, -294)

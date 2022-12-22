@@ -9,12 +9,18 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Node2D",
+"class": &"Level2D",
+"language": &"GDScript",
+"path": "res://Scenes/Level.gd"
+}, {
 "base": "Sprite2D",
 "class": &"ShadowSprite",
 "language": &"GDScript",
 "path": "res://Assets/ShadowSprite.gd"
 }]
 _global_script_class_icons={
+"Level2D": "",
 "ShadowSprite": ""
 }
 

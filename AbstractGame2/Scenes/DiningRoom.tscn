@@ -1,17 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://n8a2jebb224q"]
+[gd_scene load_steps=11 format=3 uid="uid://n8a2jebb224q"]
 
 [ext_resource type="PackedScene" uid="uid://caespfukdqcj" path="res://Scenes/Level.tscn" id="1_27svt"]
+[ext_resource type="Script" path="res://Scenes/DiningRoom.gd" id="2_lte4p"]
 [ext_resource type="Texture2D" uid="uid://dg58jii74syxu" path="res://Assets/DiningRoomBg.png" id="2_r8c8v"]
 [ext_resource type="PackedScene" uid="uid://6d4ec2x3olrk" path="res://Scenes/Switcher/RoomTrigger.tscn" id="3_vfc8i"]
 [ext_resource type="Texture2D" uid="uid://wsc2sqp274cc" path="res://Assets/Table.png" id="5_4vmyb"]
 [ext_resource type="PackedScene" uid="uid://yds67rtyu6w2" path="res://Player/Camera.tscn" id="6_tkqlu"]
 [ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="6_xckb1"]
 [ext_resource type="PackedScene" uid="uid://dsjs00fbhkktv" path="res://Env/Chair.tscn" id="7_h1vwj"]
+[ext_resource type="Texture2D" uid="uid://bo3lhrjwqww4" path="res://Assets/Key.png" id="9_ic33o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bcn8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi5xu"]
 size = Vector2(196, 77)
 
 [node name="Level" instance=ExtResource("1_27svt")]
+script = ExtResource("2_lte4p")
 
 [node name="DiningRoomS" type="Sprite2D" parent="." index="0"]
 z_index = -9
@@ -33,7 +36,9 @@ position = Vector2(177, 0)
 [node name="Camera" parent="." index="9" instance=ExtResource("6_tkqlu")]
 position = Vector2(2, -194)
 
-[node name="Table" type="StaticBody2D" parent="." index="10"]
+[node name="Table" type="RigidBody2D" parent="." index="10"]
+mass = 40.0
+metadata/_edit_group_ = true
 
 [node name="Table" type="Sprite2D" parent="Table" index="0"]
 z_index = 4
@@ -45,10 +50,26 @@ shadow_opacity = 0.189
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table" index="1"]
 position = Vector2(0, -37.5)
-shape = SubResource("RectangleShape2D_3bcn8")
+shape = SubResource("RectangleShape2D_qi5xu")
 
 [node name="Chair" parent="." index="11" instance=ExtResource("7_h1vwj")]
 
 [node name="Chair2" parent="." index="12" instance=ExtResource("7_h1vwj")]
 position = Vector2(149, -53)
 scale = Vector2(-1, 1)
+
+[node name="Key" type="RigidBody2D" parent="." index="14" groups=["Item", "Key"]]
+position = Vector2(-2, -114)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Key" index="0"]
+polygon = PackedVector2Array(-37, -1, -24, -17, -11, -10, 11, -10, 22, -15, 34, -10, 38, -2, 37, 8, 32, 14, 22, 18, 11, 14, 6, 6, -37, 6)
+
+[node name="ShadowSprite" type="Sprite2D" parent="Key" index="1"]
+z_index = 4
+texture = ExtResource("9_ic33o")
+script = ExtResource("6_xckb1")
+shadow_offset = Vector2(6, 6)
+shadow_opacity = 0.344
+
+[connection signal="body_entered" from="Doors/RoomTrigger2" to="." method="_on_room_trigger_2_body_entered"]
