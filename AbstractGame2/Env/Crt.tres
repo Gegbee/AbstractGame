@@ -234,9 +234,9 @@ void fragment()
 [resource]
 shader = SubResource("1")
 shader_parameter/aberration = 0.0
-shader_parameter/brightness = 1.2
+shader_parameter/brightness = 1.0
 shader_parameter/clip_warp = false
-shader_parameter/discolor = false
+shader_parameter/discolor = true
 shader_parameter/distort_intensity = 0.0
 shader_parameter/grille_opacity = 0.0
 shader_parameter/noise_opacity = 0.0
@@ -249,8 +249,8 @@ shader_parameter/roll_size = 0.0
 shader_parameter/roll_speed = 0.0
 shader_parameter/roll_variation = 0.1
 shader_parameter/scanlines_opacity = 0.0
-shader_parameter/scanlines_width = 0.0
-shader_parameter/static_noise_intensity = 0.15
+shader_parameter/scanlines_width = 0.25
+shader_parameter/static_noise_intensity = 0.21
 shader_parameter/vignette_intensity = 1.0
 shader_parameter/vignette_opacity = 0.6
 shader_parameter/warp_amount = 0.42

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp4e6xmfb5p0m"]
+
+[ext_resource type="PackedScene" uid="uid://caespfukdqcj" path="res://Scenes/Level.tscn" id="1_5slgo"]
+[ext_resource type="PackedScene" uid="uid://6d4ec2x3olrk" path="res://Scenes/Switcher/RoomTrigger.tscn" id="2_ynlfe"]
+[ext_resource type="Texture2D" uid="uid://vwfdxm7i751c" path="res://Assets/Outside.png" id="3_vkl7a"]
+[ext_resource type="PackedScene" uid="uid://yds67rtyu6w2" path="res://Player/Camera.tscn" id="4_4k0qt"]
+
+[node name="OutsideHouse" instance=ExtResource("1_5slgo")]
+
+[node name="RoomTrigger" parent="Doors" index="0" instance=ExtResource("2_ynlfe")]
+position = Vector2(170, -2)
+room_name = "DiningRoom"
+door_index = 2
+
+[node name="Outside" type="Sprite2D" parent="." index="7"]
+z_index = -9
+position = Vector2(-8850, -604)
+texture = ExtResource("3_vkl7a")
+metadata/_edit_lock_ = true
+
+[node name="Camera" parent="." index="8" instance=ExtResource("4_4k0qt")]
+position = Vector2(0, -144)

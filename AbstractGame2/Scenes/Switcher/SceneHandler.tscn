@@ -1,0 +1,38 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0kwpyiyxg26n"]
+
+[ext_resource type="Script" path="res://Scenes/Switcher/SceneHandler.gd" id="1_d5pb2"]
+[ext_resource type="PackedScene" uid="uid://cos7x1pj46jkh" path="res://Scenes/Bedroom.tscn" id="2_olmat"]
+[ext_resource type="PackedScene" uid="uid://clhtwcbsijjqn" path="res://Scenes/LivingRoom.tscn" id="3_0kyg5"]
+[ext_resource type="PackedScene" uid="uid://n8a2jebb224q" path="res://Scenes/DiningRoom.tscn" id="4_cmc5o"]
+[ext_resource type="PackedScene" uid="uid://dp4e6xmfb5p0m" path="res://Scenes/OutsideHouse.tscn" id="5_3ty6n"]
+[ext_resource type="PackedScene" uid="uid://d1l1qecnybaw8" path="res://Player/RigidPlayer.tscn" id="6_d12fx"]
+[ext_resource type="PackedScene" uid="uid://cmaaybelt7bbo" path="res://Env/Bg.tscn" id="7_wr214"]
+[ext_resource type="PackedScene" uid="uid://c3fu5r6ifseo7" path="res://Dialog/Dialog.tscn" id="8_djlo7"]
+[ext_resource type="PackedScene" uid="uid://d01bj6rqr3hcr" path="res://Scenes/UI/InteractIndicators.tscn" id="9_j5cb8"]
+[ext_resource type="PackedScene" uid="uid://cxlkkg8ws2cd0" path="res://ScreenShaders.tscn" id="10_3pna4"]
+
+[node name="SceneHandler" type="Node"]
+script = ExtResource("1_d5pb2")
+
+[node name="Bg" parent="." instance=ExtResource("7_wr214")]
+
+[node name="Dialog" parent="." instance=ExtResource("8_djlo7")]
+
+[node name="InteractIndicators" parent="." instance=ExtResource("9_j5cb8")]
+
+[node name="ScreenShaders" parent="." instance=ExtResource("10_3pna4")]
+
+[node name="OutsideHouse" parent="." instance=ExtResource("5_3ty6n")]
+position = Vector2(-308, -1471)
+
+[node name="Bedroom" parent="." instance=ExtResource("2_olmat")]
+position = Vector2(2467, 0)
+
+[node name="DiningRoom" parent="." instance=ExtResource("4_cmc5o")]
+position = Vector2(-2394, 53)
+
+[node name="LivingRoom" parent="." instance=ExtResource("3_0kyg5")]
+position = Vector2(-100, 4)
+
+[node name="Player" parent="." instance=ExtResource("6_d12fx")]
+position = Vector2(-206, -31)

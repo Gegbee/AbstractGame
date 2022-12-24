@@ -9,5 +9,6 @@ func _ready():
 
 
 func _on_room_trigger_2_body_entered(body):
+	print("real")
 	if body.is_in_group('Key'):
 		$Doors/RoomTrigger2.locked = false

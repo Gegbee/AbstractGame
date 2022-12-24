@@ -1,11 +1,10 @@
 extends Node
 
-var scenes_in_game : Dictionary = {
-	"Test" : preload("res://Test.tscn"),
-	"Bedroom" : preload("res://Scenes/Bedroom.tscn"),
-	"LivingRoom" : preload("res://Scenes/LivingRoom.tscn"),
-	"DiningRoom" : preload("res://Scenes/DiningRoom.tscn"),
-	"OutsideHouse" : preload("res://Scenes/OutsideHouse.tscn")
+@onready var scenes_in_game : Dictionary = {
+	"Bedroom" : $Bedroom,
+	"LivingRoom" : $LivingRoom,
+	"DiningRoom" : $DiningRoom,
+	"OutsideHouse" : $OutsideHouse,
 }
 
 var cur_scene_name : String = ""
@@ -21,6 +20,10 @@ enum {
 var state = IN_SCENE
 
 func _ready():
+	for scene_name in scenes_in_game:
+		scenes_in_game[scene_name].disable_scene()
+#		scene.hide()
+#		scene.set_process(false)
 	switch_scene("Bedroom")
 		
 func switch_scene(new_scene_name):
@@ -41,10 +44,14 @@ func change_state():
 		change_state()
 	elif state == TRANS_MID:
 		state = TRANS_OUT
+#		cur_scene.hide()
+#		cur_scene.set_process(false)
 		if cur_scene != null:
-			cur_scene.free()
-		cur_scene = scenes_in_game[cur_scene_name].call_deferred("instantiate")
-		call_deferred("add_child", cur_scene)
+			cur_scene.disable_scene()
+		cur_scene = scenes_in_game[cur_scene_name]
+#		cur_scene.hide()
+#		cur_scene.set_process(true)
+		cur_scene.enable_scene()
 		change_state()
 	elif state == TRANS_OUT:
 		state = IN_SCENE

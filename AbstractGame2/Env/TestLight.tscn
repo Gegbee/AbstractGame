@@ -1,26 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://b250qbrp0b507"]
+[gd_scene load_steps=5 format=3 uid="uid://b250qbrp0b507"]
 
+[ext_resource type="Script" path="res://Env/TestLight.gd" id="1_ibnrl"]
 [ext_resource type="Texture2D" uid="uid://cp5sxo1ecb60n" path="res://Assets/RoundLight.png" id="1_kye1x"]
 [ext_resource type="Texture2D" uid="uid://chulshi4sowkq" path="res://Assets/TrapLight.png" id="2_ngsit"]
 [ext_resource type="Texture2D" uid="uid://dei0ailutfjlw" path="res://Assets/TestLight.png" id="3_f32gn"]
 
 [node name="Light" type="Node2D"]
+z_index = 4
 position = Vector2(0.0625, -0.21875)
+script = ExtResource("1_ibnrl")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(1.17983, 45.4629)
 scale = Vector2(5.11765, 4.55133)
-energy = 0.5
+color = Color(1, 0.745098, 0.105882, 1)
+energy = 0.4
 texture = ExtResource("1_kye1x")
-texture_scale = 0.4
+texture_scale = 0.6
 
 [node name="PointLight2D3" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(-7.30568, -17.3728)
+position = Vector2(3.0215, 194.646)
+scale = Vector2(5.68214, 7.04874)
+color = Color(1, 0.745098, 0.105882, 1)
+energy = 0.5
 texture = ExtResource("2_ngsit")
 texture_scale = 0.2
 
 [node name="TrapLight" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1.78143, 151.765)
 texture = ExtResource("2_ngsit")
 

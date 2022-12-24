@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://cu60nooo3qxey" path="res://Assets/Pixellari.ttf" id="1_w6j8w"]
 
 [node name="InteractIndicators" type="CanvasLayer"]
+layer = 6
 script = ExtResource("1_do53f")
 
 [node name="Control" type="Control" parent="."]

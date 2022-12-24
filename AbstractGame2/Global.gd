@@ -13,7 +13,7 @@ var audio_bits = {
 	]
 }
 var dialog : CanvasLayer = null
-var last_scene_door_index : int = -1
+var last_scene_door_index : int = 0
 var indicators = null
 var tasks = null
 var player = null

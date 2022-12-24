@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://clhtwcbsijjqn"]
+[gd_scene load_steps=13 format=3 uid="uid://clhtwcbsijjqn"]
 
 [ext_resource type="PackedScene" uid="uid://caespfukdqcj" path="res://Scenes/Level.tscn" id="1_whr2d"]
 [ext_resource type="Texture2D" uid="uid://d3ae8q6f3410d" path="res://Assets/LivingRoomBg.png" id="2_dhxlb"]
@@ -9,6 +9,15 @@
 [ext_resource type="Texture2D" uid="uid://v774n6jev611" path="res://Assets/TV.png" id="8_1b4gb"]
 [ext_resource type="PackedScene" uid="uid://mgxqrerskulu" path="res://NPC/NPC.tscn" id="9_s8isi"]
 [ext_resource type="PackedScene" uid="uid://b250qbrp0b507" path="res://Env/TestLight.tscn" id="10_6cwgx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_877sq"]
+size = Vector2(1392, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iet85"]
+size = Vector2(1392, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajmo1"]
+size = Vector2(73, 408.5)
 
 [node name="LivingRoom" instance=ExtResource("1_whr2d")]
 
@@ -23,9 +32,21 @@ convo = "sister1"
 num_of_convos = 2
 force_dialog = true
 
-[node name="Camera" parent="." index="8" instance=ExtResource("3_0x8sg")]
-position = Vector2(126, -144)
-limit_smoothed = false
+[node name="CollisionShape2D" parent="Floor" index="0"]
+position = Vector2(113, 29.5)
+shape = SubResource("RectangleShape2D_877sq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor" index="1"]
+position = Vector2(63, -322)
+shape = SubResource("RectangleShape2D_iet85")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor" index="2"]
+position = Vector2(788.5, -147.25)
+shape = SubResource("RectangleShape2D_ajmo1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor" index="3"]
+position = Vector2(-569, -146)
+shape = SubResource("RectangleShape2D_ajmo1")
 
 [node name="RoomTrigger" parent="Doors" index="0" instance=ExtResource("2_mbkr7")]
 position = Vector2(636, 0)
@@ -36,18 +57,19 @@ position = Vector2(-392, 0)
 room_name = "DiningRoom"
 door_index = 1
 
-[node name="Player" parent="." index="10"]
-position = Vector2(-186, 0)
+[node name="Camera" parent="." index="6" instance=ExtResource("3_0x8sg")]
+position = Vector2(126, -144)
+limit_smoothed = false
 
-[node name="LivingRoomProps1s" type="Sprite2D" parent="." index="11"]
+[node name="LivingRoomProps1s" type="Sprite2D" parent="." index="7"]
 z_index = -4
-position = Vector2(189, -58)
+position = Vector2(189, -52)
 texture = ExtResource("6_uid31")
 script = ExtResource("6_72d8p")
 shadow_offset = Vector2(-32, 0)
 shadow_opacity = 0.177
 
-[node name="LivingRoomProps1s2" type="Sprite2D" parent="." index="12"]
+[node name="LivingRoomProps1s2" type="Sprite2D" parent="." index="8"]
 z_index = -4
 position = Vector2(469, -68)
 texture = ExtResource("8_1b4gb")
@@ -55,8 +77,8 @@ script = ExtResource("6_72d8p")
 shadow_offset = Vector2(14, 0)
 shadow_opacity = 0.366
 
-[node name="Light" parent="." index="13" instance=ExtResource("10_6cwgx")]
+[node name="Light" parent="." index="9" instance=ExtResource("10_6cwgx")]
 position = Vector2(386, -293)
 
-[node name="Light2" parent="." index="14" instance=ExtResource("10_6cwgx")]
+[node name="Light2" parent="." index="10" instance=ExtResource("10_6cwgx")]
 position = Vector2(-44, -294)
