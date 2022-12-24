@@ -10,16 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://dsjs00fbhkktv" path="res://Env/Chair.tscn" id="7_h1vwj"]
 [ext_resource type="Texture2D" uid="uid://bo3lhrjwqww4" path="res://Assets/Key.png" id="9_ic33o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfgru"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mab4e"]
 size = Vector2(1001, 55)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihwe8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0netg"]
 size = Vector2(1004, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ky507"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpswp"]
 size = Vector2(66, 545.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r411b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elflx"]
 size = Vector2(196, 77)
 
 [node name="DiningRoom" instance=ExtResource("1_27svt")]
@@ -32,19 +32,19 @@ texture = ExtResource("2_r8c8v")
 
 [node name="CollisionShape2D" parent="Floor" index="0"]
 position = Vector2(-11.5, 27.5)
-shape = SubResource("RectangleShape2D_hfgru")
+shape = SubResource("RectangleShape2D_mab4e")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor" index="1"]
 position = Vector2(1, -486)
-shape = SubResource("RectangleShape2D_ihwe8")
+shape = SubResource("RectangleShape2D_0netg")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor" index="2"]
 position = Vector2(-489, -243)
-shape = SubResource("RectangleShape2D_ky507")
+shape = SubResource("RectangleShape2D_bpswp")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor" index="3"]
 position = Vector2(487, -222)
-shape = SubResource("RectangleShape2D_ky507")
+shape = SubResource("RectangleShape2D_bpswp")
 
 [node name="RoomTrigger" parent="Doors" index="0" instance=ExtResource("3_vfc8i")]
 position = Vector2(357, 0)
@@ -53,8 +53,7 @@ door_index = 1
 
 [node name="RoomTrigger2" parent="Doors" index="1" instance=ExtResource("3_vfc8i")]
 position = Vector2(-347, 0)
-room_name = "Outside"
-door_index = 2
+room_name = "OutsideHouse"
 
 [node name="Camera" parent="." index="5" instance=ExtResource("6_tkqlu")]
 position = Vector2(2, -194)
@@ -73,7 +72,7 @@ shadow_opacity = 0.189
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table" index="1"]
 position = Vector2(0, -37.5)
-shape = SubResource("RectangleShape2D_r411b")
+shape = SubResource("RectangleShape2D_elflx")
 
 [node name="Chair" parent="." index="7" instance=ExtResource("7_h1vwj")]
 

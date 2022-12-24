@@ -5,6 +5,7 @@ extends Area2D
 @export var relative_spawn : Vector2 = Vector2()
 
 var locked : bool = false
+@export var immediate : bool = false
 #
 #func _on_RoomTrigger_body_entered(body):
 #	pass

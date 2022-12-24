@@ -19,9 +19,11 @@ var item_throw_mult = 800
 
 var disabled = false : set = _set_disabled
 
+var reset_state : bool = false
+var reset_position : Vector2 = Vector2()
+
 func _ready():
 	Global.player = self
-	
 	
 func _set_disabled(new_disabled):
 	disabled = new_disabled
@@ -54,6 +56,7 @@ func _process(delta):
 		
 		
 func _integrate_forces(state):
+
 	is_on_floor = false
 	for i in range(0, state.get_contact_count()):
 		if state.get_contact_local_normal(i).dot(Vector2.UP) > 0:
@@ -83,6 +86,12 @@ func _integrate_forces(state):
 	else:
 		$AnimationPlayer.play("Idle")
 		
+	if reset_state:
+		var t = state.get_transform()
+		t.origin.x = reset_position.x
+		t.origin.y = reset_position.y
+		state.set_transform(t)
+		reset_state = false
 		
 func _input(_event):
 	if Input.is_action_just_pressed("interact"):
@@ -112,14 +121,15 @@ func _input(_event):
 			cur_item = null
 			if is_instance_valid(Global.indicators):
 				Global.indicators.update('item_use', false)
-		for body in $InteractArea.get_overlapping_bodies():
-			if body.is_in_group('Item'):
-				if cur_item == null:
-					cur_item = body
-					cur_item.gravity_scale = 0.0
-					cur_item.get_node("CollisionShape2D").disabled = true
-					if is_instance_valid(Global.indicators):
-						Global.indicators.update('item_use', true)
+		else:
+			for body in $InteractArea.get_overlapping_bodies():
+				if body.is_in_group('Item'):
+					if cur_item == null:
+						cur_item = body
+						cur_item.gravity_scale = 0.0
+						cur_item.get_node("CollisionShape2D").disabled = true
+						if is_instance_valid(Global.indicators):
+							Global.indicators.update('item_use', true)
 					
 					
 func _on_interact_area_area_entered(area):
@@ -135,8 +145,12 @@ func _on_interact_area_area_entered(area):
 		if is_instance_valid(Global.indicators):
 			Global.indicators.update('converse', true)
 	elif area.is_in_group('Door'):
-		if is_instance_valid(Global.indicators):
-			Global.indicators.update('door', true)
+		if area.immediate:
+			Global.last_scene_door_index = area.door_index
+			get_tree().current_scene.switch_scene(area.room_name)
+		else:
+			if is_instance_valid(Global.indicators):
+				Global.indicators.update('door', true)
 
 func update_dialog():
 	if is_instance_valid(Global.dialog):
@@ -163,7 +177,7 @@ func _on_interact_area_area_exited(area):
 func _on_interact_area_body_entered(body):
 	if body.is_in_group('Item'):
 		if is_instance_valid(Global.indicators):
-			Global.indicators.update('item_pickup', true)
+				Global.indicators.update('item_pickup', true)
 
 func _on_interact_area_body_exited(body):
 	if body.is_in_group('Item'):

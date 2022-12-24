@@ -12,7 +12,7 @@
 friction = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ol3oi"]
-size = Vector2(184, 185.5)
+size = Vector2(150, 185.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yo1gx"]
 size = Vector2(52, 109)
@@ -137,13 +137,14 @@ custom_integrator = true
 continuous_cd = 2
 max_contacts_reported = 5
 contact_monitor = true
+can_sleep = false
 lock_rotation = true
 script = ExtResource("1_gd5j3")
 
 [node name="InteractArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
-position = Vector2(0, -67)
+position = Vector2(0, -68)
 shape = SubResource("RectangleShape2D_ol3oi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

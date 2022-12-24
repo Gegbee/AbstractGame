@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://mgxqrerskulu" path="res://NPC/NPC.tscn" id="9_s8isi"]
 [ext_resource type="PackedScene" uid="uid://b250qbrp0b507" path="res://Env/TestLight.tscn" id="10_6cwgx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_877sq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikwan"]
 size = Vector2(1392, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iet85"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fenx3"]
 size = Vector2(1392, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajmo1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qh3qu"]
 size = Vector2(73, 408.5)
 
 [node name="LivingRoom" instance=ExtResource("1_whr2d")]
@@ -34,19 +34,19 @@ force_dialog = true
 
 [node name="CollisionShape2D" parent="Floor" index="0"]
 position = Vector2(113, 29.5)
-shape = SubResource("RectangleShape2D_877sq")
+shape = SubResource("RectangleShape2D_ikwan")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor" index="1"]
 position = Vector2(63, -322)
-shape = SubResource("RectangleShape2D_iet85")
+shape = SubResource("RectangleShape2D_fenx3")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor" index="2"]
 position = Vector2(788.5, -147.25)
-shape = SubResource("RectangleShape2D_ajmo1")
+shape = SubResource("RectangleShape2D_qh3qu")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor" index="3"]
 position = Vector2(-569, -146)
-shape = SubResource("RectangleShape2D_ajmo1")
+shape = SubResource("RectangleShape2D_qh3qu")
 
 [node name="RoomTrigger" parent="Doors" index="0" instance=ExtResource("2_mbkr7")]
 position = Vector2(636, 0)

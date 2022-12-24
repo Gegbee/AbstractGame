@@ -10,15 +10,15 @@ func spawn_at_door():
 		for door in $Doors.get_children():
 			if door.door_index == Global.last_scene_door_index:
 				if is_instance_valid(Global.player):
-					Global.player.custom_integrator = false
-					if Global.player.cur_item != null:
-						Global.player.cur_item.freeze = true
-					await get_tree().process_frame
-					Global.player.global_position = door.global_position
-					Global.player.custom_integrator = true
-					if Global.player.cur_item != null:
-						Global.player.cur_item.global_position = Global.player.item_holder.global_position
-						Global.player.cur_item.freeze = false
+#					if Global.player.cur_item != null:
+#						Global.player.cur_item.freeze = true
+					print(door.global_position)
+					Global.player.reset_position = door.global_position + door.relative_spawn
+					print(Global.player.reset_position)
+					Global.player.reset_state = true
+#					if Global.player.cur_item != null:
+#						Global.player.cur_item.global_position = Global.player.item_holder.global_position
+#						Global.player.cur_item.freeze = false
 					# $Player.global_position = door.global_position <- USED WITH SCENE_SWITCHER
 
 func enable_scene():

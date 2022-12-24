@@ -5,6 +5,7 @@ extends Node
 	"LivingRoom" : $LivingRoom,
 	"DiningRoom" : $DiningRoom,
 	"OutsideHouse" : $OutsideHouse,
+	"OutsideCamps" : $OutsideCamps
 }
 
 var cur_scene_name : String = ""
@@ -24,7 +25,7 @@ func _ready():
 		scenes_in_game[scene_name].disable_scene()
 #		scene.hide()
 #		scene.set_process(false)
-	switch_scene("Bedroom")
+	switch_scene("DiningRoom")
 		
 func switch_scene(new_scene_name):
 	if state == IN_SCENE:
