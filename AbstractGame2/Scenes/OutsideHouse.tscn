@@ -6,36 +6,36 @@
 [ext_resource type="PackedScene" uid="uid://yds67rtyu6w2" path="res://Player/Camera.tscn" id="4_4k0qt"]
 [ext_resource type="Texture2D" uid="uid://vcwcd3yrmx2v" path="res://Assets/Fence.png" id="5_34vc6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3jat"]
-size = Vector2(2661, 86)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nh826"]
+size = Vector2(2421, 86)
 
 [node name="OutsideHouse" instance=ExtResource("1_5slgo")]
 
 [node name="CollisionShape2D" parent="Floor" index="0"]
-position = Vector2(396.5, 43)
-shape = SubResource("RectangleShape2D_i3jat")
+position = Vector2(395.5, 43)
+shape = SubResource("RectangleShape2D_nh826")
 
 [node name="RoomTrigger" parent="Doors" index="0" instance=ExtResource("2_ynlfe")]
 position = Vector2(170, 0)
-room_name = "DiningRoom"
+room_name = "inside-DiningRoom"
 
 [node name="RoomTrigger2" parent="Doors" index="1" instance=ExtResource("2_ynlfe")]
 position = Vector2(-850, 0)
-room_name = "OutsideCamps"
+room_name = "Outside-Camps"
 door_index = 1
 relative_spawn = Vector2(125, 0)
 immediate = true
 
-[node name="Outside" type="Sprite2D" parent="." index="4"]
+[node name="Outside" type="Sprite2D" parent="." index="2"]
 z_index = -9
-position = Vector2(228, -566)
+position = Vector2(228, -421)
 texture = ExtResource("3_vd0xt")
 metadata/_edit_lock_ = true
 
-[node name="Camera" parent="." index="5" instance=ExtResource("4_4k0qt")]
+[node name="Camera" parent="." index="3" instance=ExtResource("4_4k0qt")]
 position = Vector2(399, -336)
 
-[node name="Fence" type="Sprite2D" parent="." index="6"]
+[node name="Fence" type="Sprite2D" parent="." index="4"]
 z_index = 4
 position = Vector2(-372, -38)
 texture = ExtResource("5_34vc6")

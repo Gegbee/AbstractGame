@@ -233,7 +233,7 @@ shader_parameter/yellow_pattern_rotation = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x6qg7"]
 shader = ExtResource("2_0ckft")
-shader_parameter/vignette_intensity = 0.479
+shader_parameter/vignette_intensity = 0.471
 shader_parameter/vignette_opacity = 1.0
 
 [node name="ScreenShaders" type="CanvasLayer"]

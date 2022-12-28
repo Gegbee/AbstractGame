@@ -10,7 +10,9 @@ var indicator_types = {
 	"converse" : "[Z] Talk",
 	"continue_converse" : "[Z] Continue",
 	"item_pickup" : "[C] Use item",
-	"item_use" : "[WASD + C] Throw"
+	"item_use" : "[WASD + C] Throw",
+	"bed_down" : "[Z] Sleep",
+	"bed_up" : "[Z] Wake up"
 }
 
 func _ready():

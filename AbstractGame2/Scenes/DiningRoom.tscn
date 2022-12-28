@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://n8a2jebb224q"]
+[gd_scene load_steps=15 format=3 uid="uid://n8a2jebb224q"]
 
 [ext_resource type="PackedScene" uid="uid://caespfukdqcj" path="res://Scenes/Level.tscn" id="1_27svt"]
 [ext_resource type="Script" path="res://Scenes/DiningRoom.gd" id="2_lte4p"]
@@ -8,18 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://yds67rtyu6w2" path="res://Player/Camera.tscn" id="6_tkqlu"]
 [ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="6_xckb1"]
 [ext_resource type="PackedScene" uid="uid://dsjs00fbhkktv" path="res://Env/Chair.tscn" id="7_h1vwj"]
+[ext_resource type="Script" path="res://Env/Item2D.gd" id="9_0mcpk"]
 [ext_resource type="Texture2D" uid="uid://bo3lhrjwqww4" path="res://Assets/Key.png" id="9_ic33o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mab4e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmjbt"]
 size = Vector2(1001, 55)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0netg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dt5gi"]
 size = Vector2(1004, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpswp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhi5w"]
 size = Vector2(66, 545.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_elflx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rnyk"]
 size = Vector2(196, 77)
 
 [node name="DiningRoom" instance=ExtResource("1_27svt")]
@@ -32,33 +33,33 @@ texture = ExtResource("2_r8c8v")
 
 [node name="CollisionShape2D" parent="Floor" index="0"]
 position = Vector2(-11.5, 27.5)
-shape = SubResource("RectangleShape2D_mab4e")
+shape = SubResource("RectangleShape2D_kmjbt")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor" index="1"]
 position = Vector2(1, -486)
-shape = SubResource("RectangleShape2D_0netg")
+shape = SubResource("RectangleShape2D_dt5gi")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor" index="2"]
 position = Vector2(-489, -243)
-shape = SubResource("RectangleShape2D_bpswp")
+shape = SubResource("RectangleShape2D_qhi5w")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Floor" index="3"]
 position = Vector2(487, -222)
-shape = SubResource("RectangleShape2D_bpswp")
+shape = SubResource("RectangleShape2D_qhi5w")
 
 [node name="RoomTrigger" parent="Doors" index="0" instance=ExtResource("3_vfc8i")]
 position = Vector2(357, 0)
-room_name = "LivingRoom"
+room_name = "inside-LivingRoom"
 door_index = 1
 
 [node name="RoomTrigger2" parent="Doors" index="1" instance=ExtResource("3_vfc8i")]
 position = Vector2(-347, 0)
-room_name = "OutsideHouse"
+room_name = "Outside-House"
 
-[node name="Camera" parent="." index="5" instance=ExtResource("6_tkqlu")]
+[node name="Camera" parent="." index="3" instance=ExtResource("6_tkqlu")]
 position = Vector2(2, -194)
 
-[node name="Table" type="RigidBody2D" parent="." index="6"]
+[node name="Table" type="RigidBody2D" parent="." index="4"]
 mass = 40.0
 metadata/_edit_group_ = true
 
@@ -72,17 +73,19 @@ shadow_opacity = 0.189
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table" index="1"]
 position = Vector2(0, -37.5)
-shape = SubResource("RectangleShape2D_elflx")
+shape = SubResource("RectangleShape2D_1rnyk")
 
-[node name="Chair" parent="." index="7" instance=ExtResource("7_h1vwj")]
+[node name="Chair" parent="." index="5" instance=ExtResource("7_h1vwj")]
 
-[node name="Chair2" parent="." index="8" instance=ExtResource("7_h1vwj")]
+[node name="Chair2" parent="." index="6" instance=ExtResource("7_h1vwj")]
 position = Vector2(149, -53)
 scale = Vector2(-1, 1)
 
-[node name="Key" type="RigidBody2D" parent="." index="9" groups=["Item", "Key"]]
+[node name="Key" type="RigidBody2D" parent="." index="7" groups=["Item", "Key"]]
 z_index = 2
 position = Vector2(-2, -114)
+script = ExtResource("9_0mcpk")
+collision_ref = NodePath("CollisionShape2D")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Key" index="0"]

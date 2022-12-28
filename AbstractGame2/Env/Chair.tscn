@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsjs00fbhkktv"]
+[gd_scene load_steps=4 format=3 uid="uid://dsjs00fbhkktv"]
 
+[ext_resource type="Script" path="res://Env/Item2D.gd" id="1_uh4ry"]
 [ext_resource type="Texture2D" uid="uid://bkfxekrmvijrw" path="res://Assets/Chair.png" id="1_x8ea0"]
 [ext_resource type="Script" path="res://Assets/ShadowSprite.gd" id="2_ikbpq"]
 
@@ -7,6 +8,8 @@
 z_index = 2
 position = Vector2(-144, -53)
 mass = 3.0
+script = ExtResource("1_uh4ry")
+collision_ref = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(3, 27)

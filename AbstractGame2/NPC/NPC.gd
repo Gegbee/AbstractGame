@@ -7,3 +7,9 @@ extends Area2D
 @export var force_dialog : bool = false
 
 var cur_convo_num : int = 0
+
+@export var character_follow : NodePath
+
+func _process(_delta):
+	if has_node(character_follow):
+		global_position = get_node(character_follow).global_position

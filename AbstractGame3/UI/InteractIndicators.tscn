@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://drsvl2ca7y5tv"]
+
+[ext_resource type="Script" path="res://UI/InteractIndicators.gd" id="1_e6oqc"]
+[ext_resource type="FontFile" uid="uid://ccc34e8v33urn" path="res://Assets/InriaSans-Regular.ttf" id="1_w6j8w"]
+
+[node name="InteractIndicators" type="CanvasLayer"]
+layer = 6
+script = ExtResource("1_e6oqc")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 399.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+offset_left = 959.0
+offset_top = 122.0
+offset_right = 960.0
+offset_bottom = 277.0
+
+[node name="Label" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+offset_right = 1.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("1_w6j8w")
+theme_override_font_sizes/font_size = 40
+
+[node name="Label2" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+offset_top = 53.0
+offset_right = 1.0
+offset_bottom = 102.0
+theme_override_fonts/font = ExtResource("1_w6j8w")
+theme_override_font_sizes/font_size = 40
+
+[node name="Label3" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+offset_top = 106.0
+offset_right = 1.0
+offset_bottom = 155.0
+theme_override_fonts/font = ExtResource("1_w6j8w")
+theme_override_font_sizes/font_size = 40

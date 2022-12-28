@@ -9,7 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") * 2
 var is_on_floor = false
 
 var cur_npc = null
-var cur_item :RigidBody2D = null
+var cur_item : Item2D = null
 var item_dir : Vector2 = Vector2()
 @onready var item_holder : Node2D = $Center/ItemHolder
 var item_hold_mult = 50
@@ -22,17 +22,19 @@ var disabled = false : set = _set_disabled
 var reset_state : bool = false
 var reset_position : Vector2 = Vector2()
 
+var last_anim : String = ""
+
 func _ready():
 	Global.player = self
 	
 func _set_disabled(new_disabled):
 	disabled = new_disabled
-	if disabled:
-		if is_instance_valid(Global.indicators):
-			Global.indicators.hide()
-	else:
-		if is_instance_valid(Global.indicators):
-			Global.indicators.show()
+#	if disabled:
+#		if is_instance_valid(Global.indicators):
+#			Global.indicators.hide()
+#	else:
+#		if is_instance_valid(Global.indicators):
+#			Global.indicators.show()
 			
 func _process(delta):
 	if cur_item != null:
@@ -56,12 +58,18 @@ func _process(delta):
 		
 		
 func _integrate_forces(state):
-
+	if reset_state:
+		var t = state.get_transform()
+		t.origin.x = reset_position.x
+		t.origin.y = reset_position.y
+		state.set_transform(t)
+		reset_state = false
+		
 	is_on_floor = false
 	for i in range(0, state.get_contact_count()):
 		if state.get_contact_local_normal(i).dot(Vector2.UP) > 0:
 			is_on_floor = true
-			
+
 	if not is_on_floor:
 		linear_velocity.y += gravity * state.step
 	if !disabled and Input.is_action_just_pressed("jump") and is_on_floor:
@@ -74,48 +82,59 @@ func _integrate_forces(state):
 		$PlayerStatic.flip_h = false
 	elif direction < 0:
 		$PlayerStatic.flip_h = true
-		
+
 	if direction and !disabled:
 		linear_velocity.x += direction * ACCEL * state.step
 		linear_velocity.x = clampf(linear_velocity.x, -SPEED, SPEED)
 	else:
 		linear_velocity.x = move_toward(linear_velocity.x, 0, state.step * ACCEL)
-	
+
 	if abs(linear_velocity.x) > 1:
-		$AnimationPlayer.play('Walking')
+		change_animation_state("Walking")
 	else:
-		$AnimationPlayer.play("Idle")
-		
-	if reset_state:
-		var t = state.get_transform()
-		t.origin.x = reset_position.x
-		t.origin.y = reset_position.y
-		state.set_transform(t)
-		reset_state = false
+		change_animation_state("Idle")
+
 		
 func _input(_event):
 	if Input.is_action_just_pressed("interact"):
 		var npc_area = null
 		var door_area = null
+		var bed_area = null
 		for area in $InteractArea.get_overlapping_areas():
 			if area.is_in_group('NPC'):
 				npc_area = area
 			elif area.is_in_group('Door') and !area.locked:
 				door_area = area
+			elif area.is_in_group('Bed'):
+				bed_area = area
 		if npc_area:
 			if is_instance_valid(Global.dialog):
 				Global.dialog.next_input()
+				return
 		elif door_area:
 			if !disabled:
 				Global.last_scene_door_index = door_area.door_index
 				get_tree().current_scene.switch_scene(door_area.room_name)
-		else:
-			pass
+				return
+		elif bed_area:
+			if Global.time_of_day == Global.NIGHT:
+				if is_instance_valid(Global.indicators):
+					Global.indicators.update('bed_down', false)
+					Global.indicators.update('bed_up', true)
+				change_animation_state("BedDown")
+				Global.change_time(Global.DAY)
+				_set_disabled(true)
+			else:
+				if last_anim == "BedDown":
+					if is_instance_valid(Global.indicators):
+						Global.indicators.update('bed_up', false)
+					change_animation_state("BedUp")
+					_set_disabled(false)
 				
 	# DROPPING AND PICKING UP ITEM
 	if Input.is_action_just_pressed("interact_item"):
 		if cur_item != null:
-			cur_item.get_node("CollisionShape2D").disabled = false
+			cur_item.get_node(cur_item.collision_ref).disabled = false
 			cur_item.gravity_scale = 1.0
 			cur_item.apply_central_impulse(item_holder.position.normalized() * item_throw_mult)
 			cur_item = null
@@ -127,7 +146,7 @@ func _input(_event):
 					if cur_item == null:
 						cur_item = body
 						cur_item.gravity_scale = 0.0
-						cur_item.get_node("CollisionShape2D").disabled = true
+						cur_item.get_node(cur_item.collision_ref).disabled = true
 						if is_instance_valid(Global.indicators):
 							Global.indicators.update('item_use', true)
 					
@@ -151,7 +170,10 @@ func _on_interact_area_area_entered(area):
 		else:
 			if is_instance_valid(Global.indicators):
 				Global.indicators.update('door', true)
-
+	elif area.is_in_group('Bed'):
+		if is_instance_valid(Global.indicators) and Global.time_of_day == Global.NIGHT:
+			Global.indicators.update('bed_down', true)
+				
 func update_dialog():
 	if is_instance_valid(Global.dialog):
 		var convo : int = 0
@@ -173,7 +195,10 @@ func _on_interact_area_area_exited(area):
 	elif area.is_in_group('Door'):
 		if is_instance_valid(Global.indicators):
 			Global.indicators.update('door', false)
-
+	elif area.is_in_group('Bed'):
+		if is_instance_valid(Global.indicators):
+			Global.indicators.update('bed_down', false)
+					
 func _on_interact_area_body_entered(body):
 	if body.is_in_group('Item'):
 		if is_instance_valid(Global.indicators):
@@ -183,3 +208,20 @@ func _on_interact_area_body_exited(body):
 	if body.is_in_group('Item'):
 		if is_instance_valid(Global.indicators):
 			Global.indicators.update('item_pickup', false)
+
+func change_animation_state(new_state : String):
+#	if $AnimationPlayer.current_animation == new_state:
+#		return
+	if $AnimationPlayer.current_animation != "":
+		last_anim = $AnimationPlayer.current_animation
+	print(last_anim + " -> " + new_state)
+	if last_anim == "BedUp":
+		if !$AnimationPlayer.is_playing():
+			$AnimationPlayer.play(new_state)
+	elif last_anim == "BedDown":
+		if new_state == "BedUp":
+			$AnimationPlayer.play(new_state)
+	elif last_anim == "Walking":
+		$AnimationPlayer.play(new_state)
+	elif last_anim == "Idle":
+		$AnimationPlayer.play(new_state)

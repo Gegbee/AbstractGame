@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "RigidBody2D",
+"class": &"Item2D",
+"language": &"GDScript",
+"path": "res://Env/Item2D.gd"
+}, {
 "base": "Node2D",
 "class": &"Level2D",
 "language": &"GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[{
 "path": "res://Assets/ShadowSprite.gd"
 }]
 _global_script_class_icons={
+"Item2D": "",
 "Level2D": "",
 "ShadowSprite": ""
 }
@@ -41,7 +47,6 @@ Global="*res://Global.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/stretch/aspect="expand"
 
 [input]
