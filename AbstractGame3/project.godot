@@ -28,18 +28,24 @@ _global_script_classes=[{
 "class": &"ShadowSprite2D",
 "language": &"GDScript",
 "path": "res://Assets/ShadowSprite2D.gd"
+}, {
+"base": "Node2D",
+"class": &"Speaker2D",
+"language": &"GDScript",
+"path": "res://NPC/Speaker2D.gd"
 }]
 _global_script_class_icons={
 "CollisionGenerator2D": "",
 "Interior2D": "",
 "PolygonCopier2D": "",
-"ShadowSprite2D": ""
+"ShadowSprite2D": "",
+"Speaker2D": ""
 }
 
 [application]
 
 config/name="Abstract Game 3"
-run/main_scene="res://Test.tscn"
+run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 run/size/mode=3

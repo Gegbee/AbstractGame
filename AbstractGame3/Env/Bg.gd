@@ -6,6 +6,7 @@ extends Node2D
 # Player z-index is 0
 # Everything Interior = 2 -> 9
 # Exterior of buildings = 10
+
 func _ready():
 	Global.bg = self
 	$InteriorBg.hide()

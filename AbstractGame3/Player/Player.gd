@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-const SPEED = 55.0
-const ACCEL = 300.0
+const SPEED = 140.0
+const ACCEL = 800.0
 
 var disabled = false : set = _set_disabled
 
@@ -16,7 +16,7 @@ func _ready():
 func _set_disabled(new_disabled):
 	disabled = new_disabled
 
-func _process(delta):
+func _process(_delta):
 	pass
 	
 func _integrate_forces(state):
@@ -41,7 +41,7 @@ func _integrate_forces(state):
 		state.linear_velocity.y = move_toward(state.linear_velocity.y, 0, state.step * ACCEL)
 	
 	if linear_velocity.length() >= 30.0:
-		$CollisionPolygon2D.rotation = lerp_angle($CollisionPolygon2D.rotation, atan2(linear_velocity.y, linear_velocity.x) + PI/2, state.step * 20.0)
+		$Sprite.rotation = lerp_angle($Sprite.rotation, atan2(linear_velocity.y, linear_velocity.x) + PI/2, state.step * 20.0)
 
 
 

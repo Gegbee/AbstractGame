@@ -1,17 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgw14eqmcomd7"]
+[gd_scene load_steps=6 format=3 uid="uid://dgw14eqmcomd7"]
 
 [ext_resource type="Script" path="res://NPC/NPC.gd" id="1_1insj"]
+[ext_resource type="FontFile" uid="uid://ccc34e8v33urn" path="res://Assets/InriaSans-Regular.ttf" id="2_e7cie"]
+[ext_resource type="Texture2D" uid="uid://dqsle6wxrkbx2" path="res://Assets/Dad.png" id="3_xe2te"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iwtyi"]
+radius = 32.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlee2"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 10.0
+expand_margin_right = 10.0
 
 [node name="NPC" type="StaticBody2D"]
 script = ExtResource("1_1insj")
+text_path = NodePath("Text/HBoxContainer/VBoxContainer/Dialog")
+name_path = NodePath("Text/HBoxContainer/VBoxContainer/Name")
+texture_path = NodePath("Text/HBoxContainer/TextureRect")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iwtyi")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(1, 0.878431, 0.054902, 1)
-polygon = PackedVector2Array(-10, -9, -10, 3, 0, 11, 10, 3, 10, -9)
-
 [node name="Area2D" type="Area2D" parent="."]
+
+[node name="Text" type="Node2D" parent="."]
+position = Vector2(0, -64)
+scale = Vector2(0.4, 0.4)
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Text"]
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+
+[node name="TextureRect" type="TextureRect" parent="Text/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Text/HBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Text/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_e7cie")
+theme_override_font_sizes/font_size = 30
+text = "johan"
+
+[node name="Dialog" type="Label" parent="Text/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_e7cie")
+theme_override_font_sizes/font_size = 40
+text = "light me a ciggy yopu cunt"
+
+[node name="Panel" type="Panel" parent="Text/HBoxContainer/VBoxContainer/Dialog"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tlee2")
+
+[node name="Dad" type="Sprite2D" parent="."]
+texture = ExtResource("3_xe2te")

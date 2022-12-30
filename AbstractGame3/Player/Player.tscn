@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1xi5bkmmdyco"]
+[gd_scene load_steps=9 format=3 uid="uid://c1xi5bkmmdyco"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_mvlak"]
 [ext_resource type="Script" path="res://Player/PlayerCamera.gd" id="2_beep0"]
 [ext_resource type="Script" path="res://Env/Bg.gd" id="3_mtyq7"]
+[ext_resource type="Texture2D" uid="uid://bhypxfmcst4re" path="res://Assets/Player.png" id="4_odkig"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="5_6710u"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_08b3c"]
 friction = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lr6iw"]
+radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lwtjm"]
-radius = 30.0167
+radius = 88.3629
 
 [node name="Player" type="RigidBody2D"]
 mass = 10.0
@@ -25,14 +28,9 @@ script = ExtResource("1_mvlak")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lr6iw")
 
-[node name="CollisionPolygon2D" type="Polygon2D" parent="."]
-rotation = 1.5708
-color = Color(0.92549, 0.0745098, 0.0745098, 1)
-polygon = PackedVector2Array(0, -12, -10, -3, -10, 9, 10, 9, 10, -3)
-
 [node name="PlayerCamera" type="Camera2D" parent="."]
 current = true
-zoom = Vector2(4, 4)
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 editor_draw_limits = true
 script = ExtResource("2_beep0")
@@ -54,6 +52,10 @@ offset_top = -528.0
 offset_right = 960.0
 offset_bottom = 560.0
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_odkig")
+script = ExtResource("5_6710u")
 
 [connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_area_entered"]
 [connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://clyuoaph4tpo2"]
+
+[ext_resource type="PackedScene" uid="uid://ys0k2s8bwta7" path="res://Env/Interior.tscn" id="1_8rfxa"]
+[ext_resource type="Texture2D" uid="uid://cyoojh7w5sylb" path="res://Assets/House1.png" id="2_xam0v"]
+
+[node name="Interior" instance=ExtResource("1_8rfxa")]
+interior_area = NodePath("Interior/AreaCol")
+
+[node name="PolygonCopier2D" parent="StaticBody2D" index="0"]
+polygon = PackedVector2Array(376, -320, 352, -320, 352, -312, 368, -312, 368, -160, 472, -160, 472, 160, 216, 160, 216, 400, -72, 400, -72, 160, -112, 160, -112, 440, -472, 440, -472, -160, -392, -160, -392, -440, 80, -440, 80, -160, 240, -160, 240, -312, 256, -312, 256, -320, 232, -320, 232, -168, 88, -168, 88, -448, -400, -448, -400, -168, -480, -168, -480, 448, -104, 448, -104, 168, -80, 168, -80, 408, 224, 408, 224, 168, 480, 168, 480, -168, 376, -168)
+
+[node name="Sprite2D" type="Sprite2D" parent="Exterior" index="0"]
+z_index = 10
+texture = ExtResource("2_xam0v")
+
+[node name="Shape" parent="Exterior" index="1"]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(88, -168, 232, -168, 232, -320, 376, -320, 376, -168, 480, -168, 480, 168, 224, 168, 224, 408, -80, 408, -80, 168, -104, 168, -104, 448, -480, 448, -480, -168, -400, -168, -400, -448, 88, -448)

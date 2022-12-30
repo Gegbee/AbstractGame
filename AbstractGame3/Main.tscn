@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://baolq1lhxi35w"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_bkd5b"]
+[ext_resource type="PackedScene" uid="uid://bk6i2swbaq0mf" path="res://Env/DayCycle.tscn" id="1_ds4uv"]
+[ext_resource type="PackedScene" uid="uid://drsvl2ca7y5tv" path="res://UI/InteractIndicators.tscn" id="2_pivpo"]
+[ext_resource type="PackedScene" uid="uid://c1xi5bkmmdyco" path="res://Player/Player.tscn" id="3_u84jo"]
+[ext_resource type="PackedScene" uid="uid://clyuoaph4tpo2" path="res://Env/House1.tscn" id="4_k3g3i"]
+[ext_resource type="Texture2D" uid="uid://d32ddl8wsvaph" path="res://Assets/Roads.png" id="5_rjlib"]
+[ext_resource type="PackedScene" uid="uid://dgw14eqmcomd7" path="res://NPC/NPC.tscn" id="7_fit5j"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_bkd5b")
+
+[node name="DayCycle" parent="." instance=ExtResource("1_ds4uv")]
+visible = false
+
+[node name="InteractIndicators" parent="." instance=ExtResource("2_pivpo")]
+
+[node name="Player" parent="." instance=ExtResource("3_u84jo")]
+
+[node name="Interior" parent="." instance=ExtResource("4_k3g3i")]
+position = Vector2(-64, 824)
+
+[node name="Roads" type="Sprite2D" parent="."]
+z_index = -9
+position = Vector2(-512, -816)
+texture = ExtResource("5_rjlib")
+
+[node name="NPC" parent="." instance=ExtResource("7_fit5j")]
+position = Vector2(-136, 624)

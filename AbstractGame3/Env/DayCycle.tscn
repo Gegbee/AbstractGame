@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk6i2swbaq0mf"]
+
+[ext_resource type="Script" path="res://Env/DayCycle.gd" id="2"]
+[ext_resource type="Gradient" path="res://Env/DayCycleTwoTexture.tres" id="2_21ius"]
+[ext_resource type="FontFile" uid="uid://ccc34e8v33urn" path="res://Assets/InriaSans-Regular.ttf" id="3_xu0yk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lcfj"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[node name="DayCycle" type="CanvasModulate"]
+z_index = 11
+color = Color(0.964706, 0.627451, 0.756863, 1)
+script = ExtResource("2")
+gradient = ExtResource("2_21ius")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 22.0
+offset_top = 12.0
+offset_right = 157.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("3_xu0yk")
+theme_override_font_sizes/font_size = 24
+text = "Day: 1 Time: 3"
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Label"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7lcfj")
