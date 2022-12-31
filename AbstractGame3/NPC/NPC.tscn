@@ -16,7 +16,8 @@ corner_radius_bottom_left = 4
 expand_margin_left = 10.0
 expand_margin_right = 10.0
 
-[node name="NPC" type="StaticBody2D"]
+[node name="NPC" type="RigidBody2D"]
+freeze = true
 script = ExtResource("1_1insj")
 text_path = NodePath("Text/HBoxContainer/VBoxContainer/Dialog")
 name_path = NodePath("Text/HBoxContainer/VBoxContainer/Name")
@@ -38,26 +39,30 @@ offset_top = -80.0
 offset_right = 80.0
 
 [node name="TextureRect" type="TextureRect" parent="Text/HBoxContainer"]
-layout_mode = 2
+offset_bottom = 96.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Text/HBoxContainer"]
-layout_mode = 2
+offset_left = 4.0
+offset_right = 455.0
+offset_bottom = 96.0
 
 [node name="Name" type="Label" parent="Text/HBoxContainer/VBoxContainer"]
-layout_mode = 2
+offset_right = 451.0
+offset_bottom = 40.0
 theme_override_fonts/font = ExtResource("2_e7cie")
 theme_override_font_sizes/font_size = 30
 text = "johan"
 
 [node name="Dialog" type="Label" parent="Text/HBoxContainer/VBoxContainer"]
-layout_mode = 2
+offset_top = 44.0
+offset_right = 451.0
+offset_bottom = 96.0
 theme_override_fonts/font = ExtResource("2_e7cie")
 theme_override_font_sizes/font_size = 40
 text = "light me a ciggy yopu cunt"
 
 [node name="Panel" type="Panel" parent="Text/HBoxContainer/VBoxContainer/Dialog"]
 z_index = -1
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -67,3 +72,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tlee2")
 
 [node name="Dad" type="Sprite2D" parent="."]
 texture = ExtResource("3_xe2te")
+
+[node name="Timer" type="Timer" parent="."]

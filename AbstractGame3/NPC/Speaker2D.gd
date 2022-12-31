@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 class_name Speaker2D
 
@@ -10,15 +10,43 @@ var n
 var t
 
 var step_timer = Timer.new()
-const STEP_SPEED = 0.02
+var end_timer = Timer.new()
+const STEP_SPEED = 0.01
+
+var cur_convo_name : String = ""
+var cur_convo : Array = []
+var cur_convo_pos : int = 0
 
 func _ready():
 	p = get_node(texture_path)
 	n = get_node(name_path)
 	t = get_node(text_path)
 	add_child(step_timer)
+	add_child(end_timer)
 	step_timer.connect('timeout', Callable(self, '_on_step_timer_timeout'))
-	roll_dialog(Global.convos["sister-jules-greeting"][0])
+	step_timer.one_shot = true
+	end_timer.one_shot = true
+	end_timer.connect('timeout', Callable(self, '_on_end_timer_timeout'))
+	n.text = ""
+	t.text = ""
+	p.texture = null
+	
+func join_convo(new_convo_name : String, new_convo_pos : int):
+	cur_convo_name = new_convo_name
+	cur_convo = Global.convos[new_convo_name]["convo"]
+	cur_convo_pos = new_convo_pos
+	roll_dialog(cur_convo[cur_convo_pos])
+
+func leave_convo():
+	cur_convo_name = ""
+	cur_convo = []
+	cur_convo_pos = 0
+	print(name)
+	
+func in_convo() -> bool:
+	if cur_convo != []:
+		return true
+	return false
 	
 func roll_dialog(new_dialog : Array):
 	if new_dialog[1] != null:
@@ -32,6 +60,22 @@ func finishRunningDialog():
 	step_timer.stop()
 	t.visible_characters = -1
 
+	if !cur_convo[cur_convo_pos][3]:
+		end_timer.start(cur_convo[cur_convo_pos][4])
+	else:
+		# player input to continue the conversation
+		Global.player.npc_input_need = self
+		
+func next_dialog():
+	n.text = ""
+	t.text = ""
+	p.texture = null
+	if len(cur_convo) == cur_convo_pos + 1:
+		Global.dialog.end_convo(cur_convo_name)
+	else:
+		var next_convo_pos = cur_convo_pos + 1
+		var next_speaker = Global.dialog.speakers[cur_convo[next_convo_pos][0]]
+		next_speaker.join_convo(cur_convo_name, next_convo_pos)
 		
 #func play_audio_bit():
 #	if len(current_dialog) > 0:
@@ -48,3 +92,6 @@ func _on_step_timer_timeout():
 		finishRunningDialog()
 	else:
 		step_timer.start(STEP_SPEED)
+
+func _on_end_timer_timeout():
+	next_dialog()

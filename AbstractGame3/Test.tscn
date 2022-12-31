@@ -66,11 +66,3 @@ polygon = PackedVector2Array(-104, 24, -104, 96, 40, 96, 40, 72, 104, 72, 104, 2
 [node name="NPC" parent="." instance=ExtResource("6_5ixlu")]
 
 [node name="DayCycle" parent="." instance=ExtResource("7_jam02")]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -11
-offset_left = -321.0
-offset_top = -230.0
-offset_right = 321.0
-offset_bottom = 267.0
-color = Color(0.270588, 0.270588, 0.270588, 1)
