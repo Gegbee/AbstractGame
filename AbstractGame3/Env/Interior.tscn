@@ -15,7 +15,7 @@ color = Color(0.603922, 0.788235, 1, 1)
 script = ExtResource("2_44nyr")
 
 [node name="Interior" type="Node2D" parent="."]
-z_index = 2
+z_index = -1
 
 [node name="AreaCol" type="Area2D" parent="Interior"]
 metadata/_edit_group_ = true

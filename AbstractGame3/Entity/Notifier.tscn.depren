@@ -1,0 +1,4 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Entity/Notifier.gd" id="1_qpuvj"]
+[ext_resource type="Texture2D" uid="uid://c0jpl1i7anc0u" path="res://Assets/ExclamationNoti.png" id="2_hdydf"]

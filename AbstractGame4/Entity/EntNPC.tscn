@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn285ahgfhrcr"]
+
+[ext_resource type="PackedScene" uid="uid://bqyttb6mwxgvt" path="res://Entity/Entity.tscn" id="1_xoa68"]
+[ext_resource type="Script" path="res://NPC/NPC.gd" id="2_ic12x"]
+[ext_resource type="Texture2D" uid="uid://dqsle6wxrkbx2" path="res://Assets/Dad.png" id="3_nn1h4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eul3l"]
+radius = 32.0
+
+[node name="EntNPC" instance=ExtResource("1_xoa68")]
+mass = 10.0
+script = ExtResource("2_ic12x")
+pot_convos = null
+
+[node name="TextureRect" parent="Dialog/Base/HBoxContainer" index="0"]
+layout_mode = 3
+offset_bottom = 96.0
+
+[node name="VBoxContainer" parent="Dialog/Base/HBoxContainer" index="1"]
+layout_mode = 3
+offset_left = 4.0
+offset_right = 455.0
+offset_bottom = 96.0
+
+[node name="Name" parent="Dialog/Base/HBoxContainer/VBoxContainer" index="0"]
+layout_mode = 3
+offset_right = 451.0
+offset_bottom = 40.0
+
+[node name="Text" parent="Dialog/Base/HBoxContainer/VBoxContainer" index="1"]
+layout_mode = 3
+offset_top = 44.0
+offset_right = 451.0
+offset_bottom = 96.0
+
+[node name="Panel" parent="Dialog/Base/HBoxContainer/VBoxContainer/Text" index="0"]
+layout_mode = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_eul3l")
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+
+[node name="Dad" type="Sprite2D" parent="." index="4"]
+texture = ExtResource("3_nn1h4")
+
+[node name="Timer" type="Timer" parent="." index="5"]

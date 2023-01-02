@@ -2,12 +2,15 @@ extends RigidBody2D
 
 class_name Speaker2D
 
-@export var text_path : NodePath
-@export var name_path : NodePath
-@export var texture_path : NodePath
+export var text_path : NodePath
+export var name_path : NodePath
+export var texture_path : NodePath
+export var animation_path : NodePath
+
 var p
 var n
 var t
+var a
 
 var step_timer = Timer.new()
 var end_timer = Timer.new()
@@ -21,12 +24,13 @@ func _ready():
 	p = get_node(texture_path)
 	n = get_node(name_path)
 	t = get_node(text_path)
+	a = get_node(animation_path)
 	add_child(step_timer)
 	add_child(end_timer)
-	step_timer.connect('timeout', Callable(self, '_on_step_timer_timeout'))
+	step_timer.connect('timeout', self, '_on_step_timer_timeout')
 	step_timer.one_shot = true
 	end_timer.one_shot = true
-	end_timer.connect('timeout', Callable(self, '_on_end_timer_timeout'))
+	end_timer.connect('timeout', self, '_on_end_timer_timeout')
 	n.text = ""
 	t.text = ""
 	p.texture = null
@@ -49,6 +53,8 @@ func in_convo() -> bool:
 	return false
 	
 func roll_dialog(new_dialog : Array):
+	$Dialog.z_index = 12
+	a.play('PopUp')
 	if new_dialog[1] != null:
 		p.texture = new_dialog[1]
 	n.text = new_dialog[0]
@@ -59,7 +65,7 @@ func roll_dialog(new_dialog : Array):
 func finishRunningDialog():
 	step_timer.stop()
 	t.visible_characters = -1
-
+	$Dialog.z_index = 11
 	if !cur_convo[cur_convo_pos][3]:
 		end_timer.start(cur_convo[cur_convo_pos][4])
 	else:
@@ -67,6 +73,7 @@ func finishRunningDialog():
 		Global.player.npc_input_need = self
 		
 func next_dialog():
+	a.play('PopDown')
 	n.text = ""
 	t.text = ""
 	p.texture = null

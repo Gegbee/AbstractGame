@@ -14,5 +14,7 @@ func _ready():
 func set_interior_bg(active : bool):
 	if active:
 		$InteriorBg.show()
+		get_tree().get_current_scene().get_node("AbovePlayerOutside").hide()
 	else:
 		$InteriorBg.hide()
+		get_tree().get_current_scene().get_node("AbovePlayerOutside").show()

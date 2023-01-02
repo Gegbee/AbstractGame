@@ -1,0 +1,222 @@
+[gd_scene load_steps=15 format=3 uid="uid://ch077igllvbmv"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_lganl"]
+[ext_resource type="PackedScene" uid="uid://bqyttb6mwxgvt" path="res://Entity/Entity.tscn" id="1_uwjil"]
+[ext_resource type="Script" path="res://Player/PlayerCamera.gd" id="2_4rkie"]
+[ext_resource type="Script" path="res://Env/Bg.gd" id="3_83soa"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="5_5o2cw"]
+[ext_resource type="Texture2D" uid="uid://c3ccfn7w3uwl6" path="res://Assets/JulesTorso.png" id="5_inaga"]
+[ext_resource type="Texture2D" uid="uid://d2unu6q27ia56" path="res://Assets/JulesFoot.png" id="5_jlsu3"]
+[ext_resource type="Texture2D" uid="uid://yf4wponitqj8" path="res://Assets/JulesHead.png" id="7_q28g4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sqt5o"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gx7vy"]
+radius = 88.3629
+
+[sub_resource type="Animation" id="Animation_nbe8a"]
+resource_name = "FootIdle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/FootLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/FootRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_eum8d"]
+resource_name = "FootWalking"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/FootLeft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(16, 16), Vector2(16, -10), Vector2(16, 16), Vector2(16, 26)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/FootRight:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.1, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16, 16), Vector2(-16, 26), Vector2(-16, 16), Vector2(-16, -10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Sprite/FootLeft:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1), Vector2(1.4, 1.4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("Sprite/FootRight:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 0.1, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 1.4), Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_x852e"]
+resource_name = "PlayerPop"
+length = 0.3
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001, 0.12, 0.28),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/ShadowSprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l3wep"]
+_data = {
+"FootIdle": SubResource("Animation_nbe8a"),
+"FootWalking": SubResource("Animation_eum8d"),
+"PlayerPop": SubResource("Animation_x852e")
+}
+
+[node name="EntPlayer" instance=ExtResource("1_uwjil")]
+mass = 10.0
+continuous_cd = 2
+script = ExtResource("1_lganl")
+
+[node name="TextureRect" parent="Dialog/Base/HBoxContainer" index="0"]
+layout_mode = 3
+offset_bottom = 96.0
+
+[node name="VBoxContainer" parent="Dialog/Base/HBoxContainer" index="1"]
+layout_mode = 3
+offset_left = 4.0
+offset_right = 455.0
+offset_bottom = 96.0
+
+[node name="Name" parent="Dialog/Base/HBoxContainer/VBoxContainer" index="0"]
+layout_mode = 3
+offset_right = 451.0
+offset_bottom = 40.0
+
+[node name="Text" parent="Dialog/Base/HBoxContainer/VBoxContainer" index="1"]
+layout_mode = 3
+offset_top = 44.0
+offset_right = 451.0
+offset_bottom = 96.0
+
+[node name="Panel" parent="Dialog/Base/HBoxContainer/VBoxContainer/Text" index="0"]
+layout_mode = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_sqt5o")
+
+[node name="PlayerCamera" type="Camera2D" parent="." index="2"]
+current = true
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource("2_4rkie")
+
+[node name="InteractArea" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" index="0"]
+shape = SubResource("CircleShape2D_gx7vy")
+
+[node name="Sprite" type="Node2D" parent="." index="4"]
+
+[node name="FootLeft" type="Sprite2D" parent="Sprite" index="0"]
+position = Vector2(16, 16)
+texture = ExtResource("5_jlsu3")
+
+[node name="FootRight" type="Sprite2D" parent="Sprite" index="1"]
+position = Vector2(-16, 16)
+texture = ExtResource("5_jlsu3")
+flip_h = true
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="Sprite" index="2"]
+texture = ExtResource("5_inaga")
+script = ExtResource("5_5o2cw")
+shadow_offset = Vector2(10, 20)
+shadow_opacity = 0.3
+
+[node name="Head" type="Sprite2D" parent="." index="5"]
+texture = ExtResource("7_q28g4")
+
+[node name="Bg" type="Node2D" parent="." index="6"]
+z_index = -1
+z_as_relative = false
+script = ExtResource("3_83soa")
+
+[node name="InteriorBg" type="ColorRect" parent="Bg" index="0"]
+visible = false
+offset_left = -960.0
+offset_top = -528.0
+offset_right = 960.0
+offset_bottom = 560.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+playback_default_blend_time = 0.1
+libraries = {
+"": SubResource("AnimationLibrary_l3wep")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="9"]
+libraries = {
+"": SubResource("AnimationLibrary_l3wep")
+}

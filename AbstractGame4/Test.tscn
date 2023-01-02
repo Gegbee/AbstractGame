@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://b0himh0yxx51g"]
+
+[ext_resource type="PackedScene" uid="uid://c1xi5bkmmdyco" path="res://Player/Player.tscn" id="1_rpgyx"]
+[ext_resource type="Script" path="res://Env/Interior.gd" id="3_8tn25"]
+[ext_resource type="PackedScene" uid="uid://drsvl2ca7y5tv" path="res://UI/InteractIndicators.tscn" id="3_g3lpg"]
+[ext_resource type="Script" path="res://Env/PolygonCopier.gd" id="4_vohbk"]
+[ext_resource type="PackedScene" uid="uid://ys0k2s8bwta7" path="res://Env/Interior.tscn" id="5_j7fwy"]
+[ext_resource type="Script" path="res://Env/CollisionGenerator.gd" id="5_nec0v"]
+[ext_resource type="PackedScene" uid="uid://dgw14eqmcomd7" path="res://NPC/NPC.tscn" id="6_5ixlu"]
+[ext_resource type="PackedScene" uid="uid://bk6i2swbaq0mf" path="res://Env/DayCycle.tscn" id="7_jam02"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1jeq2"]
+size = Vector2(44, 75)
+
+[node name="Test" type="Node2D"]
+
+[node name="TestRigidBody2D" type="RigidBody2D" parent="."]
+z_index = -5
+position = Vector2(58, -7)
+mass = 300.0
+linear_damp = 4.0
+angular_damp = 4.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestRigidBody2D"]
+shape = SubResource("RectangleShape2D_1jeq2")
+
+[node name="Polygon2D" type="Polygon2D" parent="TestRigidBody2D"]
+polygon = PackedVector2Array(-22, -37, -22, 37, 22, 37, 22, -37)
+
+[node name="Player" parent="." instance=ExtResource("1_rpgyx")]
+position = Vector2(-32, 0)
+
+[node name="InteractIndicators" parent="." instance=ExtResource("3_g3lpg")]
+
+[node name="House" type="Node2D" parent="."]
+position = Vector2(-32, 72)
+script = ExtResource("3_8tn25")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="House"]
+
+[node name="PolygonCopier2D" type="Polygon2D" parent="House/StaticBody2D"]
+z_index = 2
+color = Color(0.603922, 0.788235, 1, 1)
+polygon = PackedVector2Array(-32, -32, -32, 24, -104, 24, -104, 96, 40, 96, 40, 72, 104, 72, 104, 24, 40, 24, 40, -32, 16, -32, 16, -24, 32, -24, 32, 32, 96, 32, 96, 64, 32, 64, 32, 88, -96, 88, -96, 32, -24, 32, -24, -24, -8, -24, -8, -32)
+script = ExtResource("5_nec0v")
+
+[node name="Interior" type="Node2D" parent="House"]
+z_index = 2
+
+[node name="AreaCol" type="Area2D" parent="House/Interior"]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="House/Interior/AreaCol"]
+script = ExtResource("4_vohbk")
+cp = NodePath("../../../Exterior/Shape")
+
+[node name="Exterior" type="Node2D" parent="House"]
+z_index = 10
+
+[node name="Shape" type="Polygon2D" parent="House/Exterior"]
+polygon = PackedVector2Array(-104, 24, -104, 96, 40, 96, 40, 72, 104, 72, 104, 24, 40, 24, 40, -32, -32, -32, -32, 24)
+
+[node name="Interior" parent="." instance=ExtResource("5_j7fwy")]
+
+[node name="NPC" parent="." instance=ExtResource("6_5ixlu")]
+
+[node name="DayCycle" parent="." instance=ExtResource("7_jam02")]

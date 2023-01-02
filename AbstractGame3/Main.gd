@@ -3,8 +3,8 @@ extends Node2D
 class_name Dialog2D
 
 @onready var speakers = {
-	"Dad" : $NPC,
-	"Jules" : $Player
+	"Dad" : $DadNPC,
+	"Jules" : $EntPlayer
 }
 
 var input_to_continue : bool = false

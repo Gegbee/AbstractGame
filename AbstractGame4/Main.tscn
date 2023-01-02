@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 ]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_bkd5b"]
+[ext_resource type="PackedScene"  path="res://Env/DayCycle.tscn" id="1_ds4uv"]
+[ext_resource type="PackedScene"  path="res://Env/House1.tscn" id="4_k3g3i"]
+[ext_resource type="Texture"  path="res://Assets/MapBg.png" id="6_yptej"]
+[ext_resource type="Texture"  path="res://Assets/OakTree.png" id="7_mce8g"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="8_a4y7r"]
+[ext_resource type="PackedScene"  path="res://Entity/EntPlayer.tscn" id="9_0jxy0"]
+[ext_resource type="PackedScene"  path="res://Entity/EntNPC.tscn" id="10_uupgx"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_bkd5b")
+
+[node name="DayCycle" parent="." instance=ExtResource("1_ds4uv")]
+visible = false
+
+[node name="House1" parent="." instance=ExtResource("4_k3g3i")]
+position = Vector2(-64, 824)
+
+[node name="MapBg" type="Sprite" parent="."]
+z_index = -9
+position = Vector2(-280, -392)
+texture = ExtResource("6_yptej")
+metadata/_edit_lock_ = true
+
+[node name="OakTree" type="Sprite" parent="."]
+z_index = 11
+position = Vector2(40, -584)
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree2" type="Sprite" parent="."]
+z_index = 11
+position = Vector2(568, -272)
+rotation = 0.913835
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree4" type="Sprite" parent="."]
+z_index = 13
+position = Vector2(528, 688)
+rotation = 0.913835
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree3" type="Sprite" parent="."]
+z_index = 11
+position = Vector2(632, -1152)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="EntPlayer" parent="." instance=ExtResource("9_0jxy0")]
+position = Vector2(336, 80)
+physics_material_override = null
+custom_integrator = false
+max_contacts_reported = 0
+contact_monitor = false
+lock_rotation = false
+linear_damp = 0.0
+angular_damp = 0.0
+
+[node name="EntDad" parent="." instance=ExtResource("10_uupgx")]
+position = Vector2(96, 240)
+physics_material_override = null
+custom_integrator = false
+max_contacts_reported = 0
+contact_monitor = false
+lock_rotation = false
+linear_damp = 0.0
+angular_damp = 0.0
+pot_convos = ["dad-jules-greeting"]

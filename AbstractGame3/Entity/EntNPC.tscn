@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn285ahgfhrcr"]
+
+[ext_resource type="PackedScene" uid="uid://bqyttb6mwxgvt" path="res://Entity/Entity.tscn" id="1_xoa68"]
+[ext_resource type="Script" path="res://NPC/NPC.gd" id="2_ic12x"]
+[ext_resource type="Texture2D" uid="uid://dqsle6wxrkbx2" path="res://Assets/Dad.png" id="3_nn1h4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eul3l"]
+radius = 32.0
+
+[node name="EntNPC" instance=ExtResource("1_xoa68")]
+mass = 10.0
+linear_damp = 10.0
+angular_damp = 10.0
+script = ExtResource("2_ic12x")
+pot_convos = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_eul3l")
+
+[node name="TestSprite" type="Sprite2D" parent="." index="2"]
+texture = ExtResource("3_nn1h4")
+
+[node name="Timer" type="Timer" parent="." index="3"]

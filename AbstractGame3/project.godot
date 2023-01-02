@@ -42,7 +42,7 @@ _global_script_classes=[{
 "base": "RigidBody2D",
 "class": &"Speaker2D",
 "language": &"GDScript",
-"path": "res://NPC/Speaker2D.gd"
+"path": "res://Entity/Speaker2D.gd"
 }]
 _global_script_class_icons={
 "CollisionGenerator2D": "",
@@ -163,5 +163,4 @@ interact_dialog={
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.427451, 0.427451, 0.427451, 1)
-textures/canvas_textures/default_texture_filter=0
 textures/canvas_textures/default_texture_repeat=1

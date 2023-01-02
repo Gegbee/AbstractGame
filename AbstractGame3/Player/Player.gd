@@ -1,13 +1,14 @@
 extends Speaker2D
 
-const SPEED = 140.0
-const ACCEL = 800.0
-
+const SPEED = 200.0
+const ACCEL = 900.0
+var norm_speed : float = sqrt(2 * pow(SPEED, 2))
 var disabled = false : set = set_disabled
 
 var reset_state : bool = false
 var reset_position : Vector2 = Vector2()
 var new_rot : float = 0.0
+var init_movement : bool = true
 
 var npc_input_need : Speaker2D = null
 
@@ -61,18 +62,30 @@ func _integrate_forces(state):
 	if !disabled:
 		if direction.x != 0.0:
 			linear_velocity.x += direction.x * ACCEL * state.step
-			linear_velocity.x = clampf(linear_velocity.x, -SPEED, SPEED)
 		else:
 			linear_velocity.x = move_toward(linear_velocity.x, 0, state.step * ACCEL)
 		if direction.y != 0.0:
 			linear_velocity.y += direction.y * ACCEL * state.step
-			linear_velocity.y = clampf(linear_velocity.y, -SPEED, SPEED)
 		else:
 			linear_velocity.y = move_toward(linear_velocity.y, 0, state.step * ACCEL)
-		
+		if linear_velocity.length() >= SPEED:
+			linear_velocity = linear_velocity.normalized() * SPEED
+	
 	if linear_velocity.length() >= 30.0:
-		$Sprite.rotation = lerp_angle($Sprite.rotation, atan2(linear_velocity.y, linear_velocity.x) + PI/2, state.step * 20.0)
-
+		if init_movement == true:
+			$AnimationPlayer2.stop()
+			$AnimationPlayer2.play("PlayerPop")
+			init_movement = false
+#		if abs(direction.dot(Vector2(cos(rotation), sin(rotation)))) > 0.5:
+		$AnimationPlayer.play("FootWalking")
+#		else:
+#			$AnimationPlayer.play("Shuffle")
+		$Sprite.rotation = lerp_angle($Sprite.rotation, atan2(linear_velocity.y, linear_velocity.x) - PI/2, state.step * 20.0)
+		$Head.rotation = lerp_angle($Head.rotation, atan2(linear_velocity.y, linear_velocity.x) - PI/2, state.step * 6.0)
+	else:
+		init_movement = true
+		$AnimationPlayer.play("FootIdle")
+		
 func _on_interact_area_area_entered(area):
 	if area.is_in_group('door'):
 		if is_instance_valid(Global.indicators):

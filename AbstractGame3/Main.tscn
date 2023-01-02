@@ -2,61 +2,234 @@
 
 [ext_resource type="Script" path="res://Main.gd" id="1_bkd5b"]
 [ext_resource type="PackedScene" uid="uid://bk6i2swbaq0mf" path="res://Env/DayCycle.tscn" id="1_ds4uv"]
-[ext_resource type="PackedScene" uid="uid://c1xi5bkmmdyco" path="res://Player/Player.tscn" id="3_u84jo"]
 [ext_resource type="PackedScene" uid="uid://clyuoaph4tpo2" path="res://Env/House1.tscn" id="4_k3g3i"]
 [ext_resource type="Texture2D" uid="uid://c51nhj8fqjkur" path="res://Assets/MapBg.png" id="6_yptej"]
-[ext_resource type="PackedScene" uid="uid://dgw14eqmcomd7" path="res://NPC/NPC.tscn" id="7_fit5j"]
 [ext_resource type="Texture2D" uid="uid://crg8jt7sb8vv1" path="res://Assets/OakTree.png" id="7_mce8g"]
 [ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="8_a4y7r"]
+[ext_resource type="PackedScene" uid="uid://b4sx02c5c3tma" path="res://NPC/DadNPC.tscn" id="8_mjy03"]
+[ext_resource type="PackedScene" uid="uid://ch077igllvbmv" path="res://Entity/EntPlayer.tscn" id="9_0jxy0"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_bkd5b")
 
-[node name="DayCycle" parent="." instance=ExtResource("1_ds4uv")]
+[node name="House1" parent="." instance=ExtResource("4_k3g3i")]
+position = Vector2(-824, 1816)
+
+[node name="EntPlayer" parent="." instance=ExtResource("9_0jxy0")]
+position = Vector2(-1192, 2168)
+
+[node name="AbovePlayerOutside" type="Node2D" parent="."]
+
+[node name="DayCycle" parent="AbovePlayerOutside" instance=ExtResource("1_ds4uv")]
 visible = false
 
-[node name="Player" parent="." instance=ExtResource("3_u84jo")]
+[node name="OakTree" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(8, -160)
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
 
-[node name="House1" parent="." instance=ExtResource("4_k3g3i")]
-position = Vector2(-64, 824)
+[node name="OakTree2" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(648, 144)
+rotation = 0.913835
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
 
-[node name="NPC" parent="." instance=ExtResource("7_fit5j")]
-position = Vector2(392, 208)
-pot_convos = ["dad-jules-greeting"]
+[node name="OakTree4" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 13
+position = Vector2(512, 984)
+rotation = 0.913835
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
 
-[node name="MapBg" type="Sprite2D" parent="."]
+[node name="OakTree3" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(600, -160)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree5" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(160, -392)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree6" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-88, -448)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree7" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(88, -712)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree8" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-488, -344)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree9" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1352, 280)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree10" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-240, 1584)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree11" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1640, 1536)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree12" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1576, 1232)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree13" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1952, 1168)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree14" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1672, 896)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree15" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1448, 1472)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree16" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1368, 1064)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree17" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1344, 832)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree18" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1800, 1336)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree24" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-2016, 1584)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree25" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1672, 1792)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree19" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1792, 1088)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree20" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1552, 1048)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree21" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-2184, 688)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree22" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1904, 360)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="OakTree23" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 11
+position = Vector2(-1624, 544)
+rotation = -2.18197
+texture = ExtResource("7_mce8g")
+script = ExtResource("8_a4y7r")
+shadow_offset = Vector2(40, 80)
+
+[node name="BelowPlayerOutside" type="Node2D" parent="."]
+
+[node name="MapBg" type="Sprite2D" parent="BelowPlayerOutside"]
 z_index = -9
 position = Vector2(-280, -392)
 texture = ExtResource("6_yptej")
 metadata/_edit_lock_ = true
 
-[node name="OakTree" type="Sprite2D" parent="."]
-z_index = 11
-position = Vector2(40, -584)
-texture = ExtResource("7_mce8g")
-script = ExtResource("8_a4y7r")
-shadow_offset = Vector2(40, 80)
-
-[node name="OakTree2" type="Sprite2D" parent="."]
-z_index = 11
-position = Vector2(568, -272)
-rotation = 0.913835
-texture = ExtResource("7_mce8g")
-script = ExtResource("8_a4y7r")
-shadow_offset = Vector2(40, 80)
-
-[node name="OakTree4" type="Sprite2D" parent="."]
-z_index = 13
-position = Vector2(528, 688)
-rotation = 0.913835
-texture = ExtResource("7_mce8g")
-script = ExtResource("8_a4y7r")
-shadow_offset = Vector2(40, 80)
-
-[node name="OakTree3" type="Sprite2D" parent="."]
-z_index = 11
-position = Vector2(632, -1152)
-rotation = -2.18197
-texture = ExtResource("7_mce8g")
-script = ExtResource("8_a4y7r")
-shadow_offset = Vector2(40, 80)
+[node name="DadNPC" parent="." instance=ExtResource("8_mjy03")]
+position = Vector2(-1136, 1768)
+pot_convos = ["dad-jules-greeting"]
