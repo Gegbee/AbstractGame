@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwrt3rx0dqr4k"]
+
+[ext_resource type="PackedScene" uid="uid://cn285ahgfhrcr" path="res://Entity/EntNPC.tscn" id="1_7e34h"]
+[ext_resource type="Texture2D" uid="uid://c7f288csdqrmx" path="res://Assets/PJFoot.png" id="2_dcx04"]
+[ext_resource type="Texture2D" uid="uid://dqnxwami33cep" path="res://Assets/PJTorso.png" id="3_y2dga"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="4_1vtww"]
+[ext_resource type="Texture2D" uid="uid://6dqgm0h516m0" path="res://Assets/PJHead.png" id="5_55c7u"]
+
+[node name="EntNPC" instance=ExtResource("1_7e34h")]
+head_sprite_path = NodePath("Head")
+
+[node name="InteractZ" parent="Dialog/Base" index="1"]
+visible = false
+
+[node name="Panel" parent="Dialog/Base/Text" index="0"]
+layout_mode = 1
+
+[node name="Sprite" type="Node2D" parent="." index="6"]
+
+[node name="LeftFoot" type="Sprite2D" parent="Sprite" index="0"]
+position = Vector2(-16, 16)
+texture = ExtResource("2_dcx04")
+
+[node name="RightFoot" type="Sprite2D" parent="Sprite" index="1"]
+position = Vector2(16, 16)
+texture = ExtResource("2_dcx04")
+flip_h = true
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="Sprite" index="2"]
+texture = ExtResource("3_y2dga")
+script = ExtResource("4_1vtww")
+shadow_offset = Vector2(10, 20)
+shadow_opacity = 0.3
+
+[node name="Head" type="Sprite2D" parent="." index="7"]
+texture = ExtResource("5_55c7u")

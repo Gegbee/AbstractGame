@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmbn12s7ghhe2"]
+
+[ext_resource type="Script" path="res://Env/DoorArea.gd" id="1_bextw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r31xi"]
+size = Vector2(0, 16)
+
+[node name="DoorArea" type="Area2D"]
+position = Vector2(48, -80)
+script = ExtResource("1_bextw")
+collision = NodePath("../OutsideBody/CollisionPolygon2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r31xi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

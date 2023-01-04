@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfl60cnwjgncs"]
+
+[ext_resource type="Script" path="res://Entity/Notifier.gd" id="1_4slcw"]
+[ext_resource type="Texture2D" uid="uid://c0jpl1i7anc0u" path="res://Assets/ExclamationNoti.png" id="2_hdydf"]
+
+[sub_resource type="Animation" id="Animation_sw8xy"]
+resource_name = "new_noti"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -32), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.35, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.643, 1.484), Vector2(1.286, 0.839), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.85, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eftr0"]
+_data = {
+"new_noti": SubResource("Animation_sw8xy")
+}
+
+[node name="Notifier" type="Node2D"]
+script = ExtResource("1_4slcw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -40)
+texture = ExtResource("2_hdydf")
+offset = Vector2(8, -40)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eftr0")
+}

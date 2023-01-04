@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://baolq1lhxi35w"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_jjf5t"]
+[ext_resource type="PackedScene" uid="uid://ch077igllvbmv" path="res://Entity/EntPlayer.tscn" id="2_4lfcs"]
+[ext_resource type="Texture2D" uid="uid://dr5j64gpuo3ra" path="res://Assets/AbstractionBg.png" id="3_4bubf"]
+[ext_resource type="PackedScene" uid="uid://dwrt3rx0dqr4k" path="res://NPC/PJNPC.tscn" id="4_wu8m2"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_jjf5t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+offset_left = -1845.0
+offset_top = -1258.0
+offset_right = 1911.0
+offset_bottom = 1047.0
+color = Color(0.886275, 0.886275, 0.886275, 1)
+
+[node name="EntPlayer" parent="." instance=ExtResource("2_4lfcs")]
+position = Vector2(-325, 127)
+metadata/_edit_group_ = true
+
+[node name="AbstractionBg" type="Sprite2D" parent="."]
+z_index = -9
+position = Vector2(62, -44)
+texture = ExtResource("3_4bubf")
+metadata/_edit_lock_ = true
+
+[node name="PJNPC" parent="." instance=ExtResource("4_wu8m2")]
+position = Vector2(331, -406)
+pot_convos = ["pj-intro"]
