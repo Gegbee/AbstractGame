@@ -21,7 +21,8 @@ func _ready():
 func set_disabled(new_disabled):
 	disabled = new_disabled
 	set_deferred("freeze", disabled)
-
+	$AnimationPlayer.play("FootIdle")
+	
 func set_asleep(new_asleep):
 	asleep = new_asleep
 	set_disabled(asleep)

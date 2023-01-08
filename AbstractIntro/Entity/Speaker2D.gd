@@ -20,6 +20,7 @@ var cur_convo_name : String = ""
 var cur_convo : Array = []
 var cur_convo_pos : int = 0
 signal convo_finished(speaker, convo_name)
+signal convo_started(speaker, convo_name)
 
 func _ready():
 #	p = get_node(texture_path)
@@ -39,6 +40,7 @@ func _ready():
 	a.play('Reset')
 	
 func join_convo(new_convo_name : String, new_convo_pos : int):
+	emit_signal('convo_started', self, new_convo_name)
 	cur_convo_name = new_convo_name
 	cur_convo = Global.convos[new_convo_name]["convo"]
 	cur_convo_pos = new_convo_pos

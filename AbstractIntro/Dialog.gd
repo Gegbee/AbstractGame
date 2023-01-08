@@ -9,7 +9,8 @@ class_name Dialog2D
 	"sister" : $SisterNPC,
 	"worker" : $WorkerNPC,
 	"officer" : $OfficerNPC,
-	"granny" : $GrannyNPC
+	"granny" : $GrannyNPC,
+	"phone" : $PhoneNPC
 }
 
 var input_to_continue : bool = false

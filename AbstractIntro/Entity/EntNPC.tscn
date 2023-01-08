@@ -27,3 +27,4 @@ texture = ExtResource("3_nn1h4")
 [node name="Timer" type="Timer" parent="." index="3"]
 
 [connection signal="convo_finished" from="." to="." method="_on_convo_finished"]
+[connection signal="convo_started" from="." to="." method="_on_convo_started"]

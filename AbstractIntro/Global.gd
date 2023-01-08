@@ -13,7 +13,8 @@ var portraits = {
 	"sister" : preload("res://Assets/SisterPortrait.png"),
 	"worker" : preload("res://Assets/OfficerPortrait.png"),
 	"officer" : preload("res://Assets/OfficerPortrait.png"),
-	"granny" : preload("res://Assets/OfficerPortrait.png")
+	"granny" : preload("res://Assets/OfficerPortrait.png"),
+	"phone" : preload("res://Assets/OfficerPortrait.png")
 }
 var convos = {
 	# each of these dictionaries are complete_convos
@@ -180,7 +181,7 @@ var convos = {
 		]
 	},
 	"dad-phone" : {
-		"participants" : ["dad", "phone"],
+		"participants" : ["dad", "phone", "jules"],
 		"lock_player" : true,
 		"interrupt" : true,
 		# this is a convo
@@ -223,7 +224,28 @@ var convos = {
 		# this is a convo
 		"convo" : [
 			# this is a line
-			# [name, portrait, text, input_to_continue, time_if_no_input]
+			["p johnson", "Oh wow…", true],
+			["p johnson", "That was faster than-", false, 0.5],
+			["jules", "SHUT UP!", true],
+			["jules", "You’re gonna tell me who they fuck you are before you pull any mo nonsense.", true],
+			["p johnson", "I’m Pickle Johnson: Ruler of the Abstraction.", true],
+			["jules", "That tells me nothing.", true],
+			["jules", "Why am I here!?", true],
+			["p johnson", "To be saved…", true],
+			["p johnson", "There is no God that you can pray to for salvation…", true],
+			["p johnson", "It’s all made up.", true],
+			["p johnson", "The only salvation possible is the Abstraction…", true],
+			["p johnson", "…a realm of dissociation and illusion.", true],
+			["jules", "I want to go back.", true],
+			["p johnson", "HA!", true],
+			["p johnson", "Your world is ugly Jules…", true],
+			["p johnson", "…divided among monsters.", true],
+			["p johnson", "The Abstraction is comfort away from America’s sin.", true],
+			["jules", "This is HELL -- not comfort.", true],
+			["p johnson", "Oh, my American child…", true],
+			["p johnson", "…it soon will be", false, 1.0],
+			["p johnson", "…it soon will be", false, 1.0],
+			["p johnson", "ssoooonn…", true],
 		]
 	},
 	

@@ -53,3 +53,6 @@ func _on_convo_finished(_speaker, _convo_name):
 	await get_tree().process_frame
 	notify_near(true)
 		
+
+func _on_convo_started(_speaker, _convo_name):
+	$Notifier.noti("null")

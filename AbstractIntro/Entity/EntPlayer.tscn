@@ -13,7 +13,7 @@
 radius = 88.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gx7vy"]
-radius = 704.0
+radius = 392.082
 
 [sub_resource type="Animation" id="Animation_nbe8a"]
 resource_name = "FootIdle"
