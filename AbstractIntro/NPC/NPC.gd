@@ -46,7 +46,7 @@ func _process(delta):
 	if player_in_area:
 		if hs:
 			var rel_pos = player_in_area.global_position - global_position
-			hs.rotation = lerp(hs.rotation, atan2(rel_pos.y, rel_pos.x) - PI/2, delta * 10.0)
+			hs.rotation = lerp_angle(hs.rotation, atan2(rel_pos.y, rel_pos.x) - PI/2, delta * 10.0)
 
 
 func _on_convo_finished(_speaker, _convo_name):

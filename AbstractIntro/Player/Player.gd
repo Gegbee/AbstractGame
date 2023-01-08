@@ -1,7 +1,7 @@
 extends Speaker2D
 
-const SPEED = 400.0
-const ACCEL = 1800.0
+const SPEED = 400.0 * 4
+const ACCEL = 1800.0 * 4
 var norm_speed : float = sqrt(2 * pow(SPEED, 2))
 var disabled = false : set = set_disabled
 
@@ -20,7 +20,7 @@ func _ready():
 	
 func set_disabled(new_disabled):
 	disabled = new_disabled
-	freeze = disabled
+	set_deferred("freeze", disabled)
 
 func set_asleep(new_asleep):
 	asleep = new_asleep
@@ -100,7 +100,10 @@ func _integrate_forces(state):
 		init_movement = true
 		$AnimationPlayer.play("FootIdle")
 
-	
+#	if disabled:
+#		linear_velocity = Vector2()
+# put here because freeze wasnt working
+
 func _on_interact_area_area_entered(area):
 	if area.is_in_group('door'):
 		if is_instance_valid(Global.indicators):

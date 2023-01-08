@@ -167,7 +167,7 @@ libraries = {
 }
 
 [node name="InteriorBg" type="Node2D" parent="." index="7"]
-z_index = -2
+z_index = -3
 script = ExtResource("3_83soa")
 
 [node name="InteriorBg" type="ColorRect" parent="InteriorBg" index="0"]

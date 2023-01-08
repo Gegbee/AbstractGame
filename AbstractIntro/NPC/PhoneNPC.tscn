@@ -5,9 +5,6 @@
 
 [node name="PhoneNPC" instance=ExtResource("1_ui87s")]
 
-[node name="Panel" parent="Dialog/Base/Text" index="0"]
-layout_mode = 1
-
 [node name="PhoneTest" type="Sprite2D" parent="." index="6"]
 position = Vector2(0, -8)
 texture = ExtResource("2_ch2s3")

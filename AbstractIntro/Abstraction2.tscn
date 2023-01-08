@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsx2h06nsss1n"]
+
+[ext_resource type="PackedScene" uid="uid://baolq1lhxi35w" path="res://Abstraction.tscn" id="1_nk5lx"]
+[ext_resource type="Script" path="res://Abstraction2.gd" id="2_aggbo"]
+
+[node name="AbstractionMain" instance=ExtResource("1_nk5lx")]
+script = ExtResource("2_aggbo")
+
+[node name="PJNPC" parent="." index="3"]
+pot_convos = ["pj-reentrance"]

@@ -9,9 +9,6 @@
 [node name="OfficerNPC" instance=ExtResource("1_lrbyj")]
 head_sprite_path = NodePath("Head")
 
-[node name="Panel" parent="Dialog/Base/Text" index="0"]
-layout_mode = 1
-
 [node name="Sprite" type="Node2D" parent="." index="6"]
 
 [node name="FootLeft" type="Sprite2D" parent="Sprite" index="0"]

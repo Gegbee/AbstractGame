@@ -99,14 +99,14 @@ var convos = {
 	},
 	"worker-1" : {
 		"participants" : ["jules", "worker"],
-		"lock_player" : false,
+		"lock_player" : true,
 		"interrupt" : true,
 		# this is a convo
 		"convo" : [
 			# this is a line
 			# [name, portrait, text, input_to_continue, time_if_no_input]
 			["worker", "Got a problem?", true],
-			["jules", "Sorry, head ya mumbling.", true],
+			["jules", "Sorry, heard ya mumbling.", true],
 			["worker", "You alr kid.", true],
 			["worker", "Don't mind me, I just do the gov'ners dirty work...", true],
 			["worker", "Do the repairin' for em.", true],
@@ -114,13 +114,13 @@ var convos = {
 	},
 	"officer-granny" : {
 		"participants" : ["officer", "granny"],
-		"lock_player" : false,
+		"lock_player" : true,
 		"interrupt" : true,
 		# this is a convo
 		"convo" : [
 			# this is a line
 			# [name, portrait, text, input_to_continue, time_if_no_input]
-			["officer", "Look Mrs. Ellis... it's just part of Gov’ner Randall’s campaign.", true],
+			["officer", "Look Mrs. Ellis...", true],
 			["officer", "...it's just part of Gov’ner Randall’s campaign.", true],
 			["granny", "You mean these damn signs are permanent?", true],
 			["officer", "No Mrs. Ellis...", false, 1.0],
@@ -136,7 +136,7 @@ var convos = {
 	},
 	"jules-granny-1" : {
 		"participants" : ["jules", "granny"],
-		"lock_player" : false,
+		"lock_player" : true,
 		"interrupt" : true,
 		# this is a convo
 		"convo" : [
@@ -156,7 +156,7 @@ var convos = {
 	},
 	"jules-granny-2" : {
 		"participants" : ["jules", "granny"],
-		"lock_player" : false,
+		"lock_player" : true,
 		"interrupt" : true,
 		# this is a convo
 		"convo" : [
@@ -167,7 +167,7 @@ var convos = {
 	},
 	"jules-sister-1" : {
 		"participants" : ["jules", "sister"],
-		"lock_player" : false,
+		"lock_player" : true,
 		"interrupt" : true,
 		# this is a convo
 		"convo" : [
@@ -181,7 +181,7 @@ var convos = {
 	},
 	"dad-phone" : {
 		"participants" : ["dad", "phone"],
-		"lock_player" : false,
+		"lock_player" : true,
 		"interrupt" : true,
 		# this is a convo
 		"convo" : [
@@ -200,7 +200,7 @@ var convos = {
 	},
 	"dad-3" : {
 		"participants" : ["dad", "jules"],
-		"lock_player" : false,
+		"lock_player" : true,
 		"interrupt" : true,
 		# this is a convo
 		"convo" : [
@@ -218,20 +218,12 @@ var convos = {
 	},
 	"pj-reentrance" : {
 		"participants" : ["p johnson", "jules"],
-		"lock_player" : false,
+		"lock_player" : true,
 		"interrupt" : true,
 		# this is a convo
 		"convo" : [
 			# this is a line
 			# [name, portrait, text, input_to_continue, time_if_no_input]
-			["jules", "Hey papa… I’m home before midnight!", true],
-			["dad", "That’s great Jules :|", true],
-			["jules", "Is eleanor gonna be okay?", true],
-			["dad", "Yes, she will…", true],
-			["dad", "Don’t worry ellie I’ll save you.", true],
-			["dad", "I’m gonna get you down to the hospital morrow.", true],
-			["dad", "Jules will take care of the house.", true],
-			["dad", "Ain’t that right Julius?", true],
 		]
 	},
 	
