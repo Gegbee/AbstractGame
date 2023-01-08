@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://w7wi8nmc1q54"]
+
+[ext_resource type="PackedScene" uid="uid://ys0k2s8bwta7" path="res://Env/Interior.tscn" id="1_14pei"]
+[ext_resource type="Texture2D" uid="uid://dv1umoatw6hhk" path="res://Assets/HouseExterior.png" id="2_5qgvm"]
+[ext_resource type="Texture2D" uid="uid://8ud8h5sw3xql" path="res://Assets/HouseInterior.png" id="2_u4kva"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="3_f1rqv"]
+
+[node name="House" instance=ExtResource("1_14pei")]
+
+[node name="ColPolygon" parent="StaticBody2D" index="0"]
+polygon = PackedVector2Array(1048, -1056, 1048, 40, 464, 40, 464, 280, 824, 280, 824, 1672, -336, 1672, -336, -280, -1320, -280, -1320, -1416, -344, -1416, -344, -1672, 1040, -1672, 1040, -1496, 1320, -1496, 1320, -1408, 1352, -1408, 1352, -1528, 1072, -1528, 1072, -1696, -368, -1696, -368, -1448, -1352, -1448, -1352, -248, -368, -248, -368, 1696, 848, 1696, 848, 256, 488, 256, 488, 64, 1072, 64, 1072, -1032, 1352, -1032, 1352, -1152, 1320, -1152, 1320, -1056)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interior/AreaCol" index="0"]
+polygon = PackedVector2Array(-1320, -288, -336, -280, -336, 1656, 816, 1664, 824, 280, 456, 288, 456, 40, 1040, 40, 1048, -1072, 1328, -1056, 1328, -1504, 1048, -1496, 1048, -1672, -344, -1672, -344, -1408, -1320, -1416)
+
+[node name="Sprite2D" type="Sprite2D" parent="Interior" index="1"]
+texture = ExtResource("2_u4kva")
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="Exterior" index="0"]
+texture = ExtResource("2_5qgvm")
+script = ExtResource("3_f1rqv")
+shadow_offset = Vector2(80, 120)
+shadow_opacity = 0.2

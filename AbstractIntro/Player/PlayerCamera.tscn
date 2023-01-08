@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7nv4hcry4q82"]
+
+[ext_resource type="Script" path="res://Player/PlayerCamera.gd" id="1_hgjir"]
+
+[node name="PlayerCamera" type="Camera2D"]
+position = Vector2(-47, -138)
+current = true
+zoom = Vector2(0.7, 0.7)
+script = ExtResource("1_hgjir")
+is_static = true

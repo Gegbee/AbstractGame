@@ -11,6 +11,7 @@ var new_rot : float = 0.0
 var init_movement : bool = true
 
 var npc_input_need : Speaker2D = null
+var asleep : bool = false : set = set_asleep
 
 func _ready():
 	Global.player = self
@@ -19,9 +20,19 @@ func _ready():
 	
 func set_disabled(new_disabled):
 	disabled = new_disabled
-	print(disabled)
 	freeze = disabled
-	
+
+func set_asleep(new_asleep):
+	asleep = new_asleep
+	set_disabled(asleep)
+	$Sprite.visible = !asleep
+	$Head.visible = !asleep
+	$AsleepSprite.visible = asleep
+	if asleep:
+		$Notifier.noti('asleep')
+	else:
+		$Notifier.noti("null")
+		
 func _input(_event):
 	if Input.is_action_pressed('interact'):
 		if npc_input_need != null:
@@ -30,12 +41,15 @@ func _input(_event):
 			return
 		if cur_convo_name != "":
 			return
+		if asleep:
+			set_asleep(false)
 		var npc = null
 		var door = null
 		var bed = null
 		for body in $InteractArea.get_overlapping_bodies():
 			if body.is_in_group('npc'):
-				npc = body
+				if body.cur_pot_convo != '':
+					npc = body
 			elif body.is_in_group('door') and !body.locked:
 				door = body
 		if door:

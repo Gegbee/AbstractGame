@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_lganl"]
 [ext_resource type="PackedScene" uid="uid://bqyttb6mwxgvt" path="res://Entity/Entity.tscn" id="1_uwjil"]
-[ext_resource type="Script" path="res://Player/PlayerCamera.gd" id="2_4rkie"]
 [ext_resource type="Script" path="res://Env/Bg.gd" id="3_83soa"]
 [ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="5_5o2cw"]
 [ext_resource type="Texture2D" uid="uid://c3ccfn7w3uwl6" path="res://Assets/JulesTorso.png" id="5_inaga"]
 [ext_resource type="Texture2D" uid="uid://d2unu6q27ia56" path="res://Assets/JulesFoot.png" id="5_jlsu3"]
 [ext_resource type="Texture2D" uid="uid://yf4wponitqj8" path="res://Assets/JulesHead.png" id="7_q28g4"]
+[ext_resource type="Texture2D" uid="uid://dsuue6qmr0d1j" path="res://Assets/SleepingJules.png" id="8_2hkhn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sqt5o"]
-radius = 104.0
+radius = 88.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gx7vy"]
 radius = 704.0
@@ -126,29 +126,15 @@ mass = 10.0
 custom_integrator = true
 script = ExtResource("1_lganl")
 
-[node name="Text" parent="Dialog/Base" index="3"]
-theme_override_font_sizes/font_size = 60
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_sqt5o")
 
-[node name="PlayerCamera" type="Camera2D" parent="." index="2"]
-current = true
-zoom = Vector2(0.6, 0.6)
-limit_left = -1400
-limit_top = -1000
-limit_right = 1400
-limit_bottom = 1000
-position_smoothing_enabled = true
-editor_draw_limits = true
-script = ExtResource("2_4rkie")
-
-[node name="InteractArea" type="Area2D" parent="." index="3"]
+[node name="InteractArea" type="Area2D" parent="." index="2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" index="0"]
 shape = SubResource("CircleShape2D_gx7vy")
 
-[node name="Sprite" type="Node2D" parent="." index="4"]
+[node name="Sprite" type="Node2D" parent="." index="3"]
 
 [node name="FootLeft" type="Sprite2D" parent="Sprite" index="0"]
 position = Vector2(32, -20.262)
@@ -166,31 +152,39 @@ script = ExtResource("5_5o2cw")
 shadow_offset = Vector2(10, 20)
 shadow_opacity = 0.3
 
-[node name="Head" type="Sprite2D" parent="." index="5"]
+[node name="Head" type="Sprite2D" parent="." index="4"]
 texture = ExtResource("7_q28g4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 playback_default_blend_time = 0.1
 libraries = {
 "": SubResource("AnimationLibrary_l3wep")
 }
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="7"]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="6"]
 libraries = {
 "": SubResource("AnimationLibrary_l3wep")
 }
 
-[node name="InteriorBg" type="Node2D" parent="." index="8"]
+[node name="InteriorBg" type="Node2D" parent="." index="7"]
 z_index = -2
 script = ExtResource("3_83soa")
 
 [node name="InteriorBg" type="ColorRect" parent="InteriorBg" index="0"]
 visible = false
-offset_left = -1624.0
-offset_top = -968.0
-offset_right = 1624.0
-offset_bottom = 888.0
+offset_left = -4248.0
+offset_top = -2696.0
+offset_right = 4224.0
+offset_bottom = 2152.0
 color = Color(0, 0, 0, 1)
+
+[node name="AsleepSprite" type="Sprite2D" parent="." index="10"]
+visible = false
+position = Vector2(8, 72)
+rotation = -0.635205
+texture = ExtResource("8_2hkhn")
+script = ExtResource("5_5o2cw")
+shadow_offset = Vector2(7, 7)
 
 [connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_area_entered"]
 [connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]

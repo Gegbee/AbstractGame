@@ -4,7 +4,12 @@ class_name Dialog2D
 
 @onready var speakers = {
 	"p johnson" : $PJNPC,
-	"jules" : $EntPlayer
+	"jules" : $EntPlayer,
+	"dad" : $DadNPC,
+	"sister" : $SisterNPC,
+	"worker" : $WorkerNPC,
+	"officer" : $OfficerNPC,
+	"granny" : $GrannyNPC
 }
 
 var input_to_continue : bool = false
@@ -21,7 +26,8 @@ func start_convo(convo_name : String):
 
 	if new_convo["interrupt"]:
 		for participant in new_convo["participants"]:
-			speakers[new_convo["convo"][0][0]].leave_convo()
+			if speakers[new_convo["convo"][0][0]].in_convo():
+				speakers[new_convo["convo"][0][0]].leave_convo()
 		# end current convos in participants because convo is interrupt mandatory
 	else:
 		var can_continue = true

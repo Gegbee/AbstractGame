@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbf68pgdbu0i4"]
+
+[ext_resource type="PackedScene" uid="uid://cn285ahgfhrcr" path="res://Entity/EntNPC.tscn" id="1_lrbyj"]
+[ext_resource type="Texture2D" uid="uid://c1t7eum2mv6sj" path="res://Assets/OfficerFoot.png" id="2_1omgt"]
+[ext_resource type="Texture2D" uid="uid://bolusq8gnsapy" path="res://Assets/OfficerTorso.png" id="3_oaleh"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="4_dwybs"]
+[ext_resource type="Texture2D" uid="uid://ci8l4d2sku7dj" path="res://Assets/OfficerHead.png" id="5_mi7nk"]
+
+[node name="OfficerNPC" instance=ExtResource("1_lrbyj")]
+head_sprite_path = NodePath("Head")
+
+[node name="Panel" parent="Dialog/Base/Text" index="0"]
+layout_mode = 1
+
+[node name="Sprite" type="Node2D" parent="." index="6"]
+
+[node name="FootLeft" type="Sprite2D" parent="Sprite" index="0"]
+position = Vector2(40, 40)
+texture = ExtResource("2_1omgt")
+
+[node name="FootRight" type="Sprite2D" parent="Sprite" index="1"]
+position = Vector2(-40, 40)
+texture = ExtResource("2_1omgt")
+flip_h = true
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="Sprite" index="2"]
+texture = ExtResource("3_oaleh")
+script = ExtResource("4_dwybs")
+shadow_offset = Vector2(10, 20)
+shadow_opacity = 0.3
+
+[node name="Head" type="Sprite2D" parent="." index="7"]
+texture = ExtResource("5_mi7nk")

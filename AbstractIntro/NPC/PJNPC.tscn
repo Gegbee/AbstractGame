@@ -9,20 +9,18 @@
 [node name="EntNPC" instance=ExtResource("1_7e34h")]
 head_sprite_path = NodePath("Head")
 
-[node name="InteractZ" parent="Dialog/Base" index="1"]
-visible = false
-
-[node name="Panel" parent="Dialog/Base/Text" index="0"]
-layout_mode = 1
+[node name="Text" parent="Dialog/Base" index="3"]
+offset_top = -104.0
+offset_bottom = -55.0
 
 [node name="Sprite" type="Node2D" parent="." index="6"]
 
 [node name="LeftFoot" type="Sprite2D" parent="Sprite" index="0"]
-position = Vector2(-16, 16)
+position = Vector2(-48, 48)
 texture = ExtResource("2_dcx04")
 
 [node name="RightFoot" type="Sprite2D" parent="Sprite" index="1"]
-position = Vector2(16, 16)
+position = Vector2(48, 40)
 texture = ExtResource("2_dcx04")
 flip_h = true
 

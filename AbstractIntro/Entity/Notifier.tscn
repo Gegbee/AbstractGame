@@ -1,11 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfl60cnwjgncs"]
+[gd_scene load_steps=7 format=3 uid="uid://bfl60cnwjgncs"]
 
 [ext_resource type="Script" path="res://Entity/Notifier.gd" id="1_4slcw"]
 [ext_resource type="Texture2D" uid="uid://c0jpl1i7anc0u" path="res://Assets/ExclamationNoti.png" id="2_hdydf"]
 
+[sub_resource type="Animation" id="Animation_icnld"]
+resource_name = "close_noti"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pk2r4"]
+resource_name = "idle_noti"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_sw8xy"]
 resource_name = "new_noti"
-length = 2.0
+length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -38,26 +70,31 @@ tracks/2/path = NodePath("Sprite2D:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.85, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+"values": []
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eftr0"]
 _data = {
+"close_noti": SubResource("Animation_icnld"),
+"idle_noti": SubResource("Animation_pk2r4"),
 "new_noti": SubResource("Animation_sw8xy")
 }
 
 [node name="Notifier" type="Node2D"]
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_4slcw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(8, -40)
 texture = ExtResource("2_hdydf")
 offset = Vector2(8, -40)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_default_blend_time = 0.2
 libraries = {
 "": SubResource("AnimationLibrary_eftr0")
 }
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

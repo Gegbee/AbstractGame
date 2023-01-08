@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsmfi68kl5j44"]
+
+[ext_resource type="PackedScene" uid="uid://cn285ahgfhrcr" path="res://Entity/EntNPC.tscn" id="1_eykqq"]
+[ext_resource type="Texture2D" uid="uid://c87xcs6aaxke0" path="res://Assets/WorkerFoot.png" id="2_l0ki0"]
+[ext_resource type="Texture2D" uid="uid://dyvxhuuyvq6a4" path="res://Assets/WorkerTorso.png" id="3_j2vs6"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="4_h0142"]
+[ext_resource type="Texture2D" uid="uid://d0jjeigxc8eex" path="res://Assets/WorkerHead.png" id="5_fgd5d"]
+
+[node name="WorkerNPC" instance=ExtResource("1_eykqq")]
+head_sprite_path = NodePath("Head")
+
+[node name="Panel" parent="Dialog/Base/Text" index="0"]
+layout_mode = 1
+
+[node name="Sprite" type="Node2D" parent="." index="6"]
+
+[node name="FootLeft" type="Sprite2D" parent="Sprite" index="0"]
+position = Vector2(40, 40)
+texture = ExtResource("2_l0ki0")
+
+[node name="FootRight" type="Sprite2D" parent="Sprite" index="1"]
+position = Vector2(-40, 40)
+texture = ExtResource("2_l0ki0")
+flip_h = true
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="Sprite" index="2"]
+texture = ExtResource("3_j2vs6")
+script = ExtResource("4_h0142")
+shadow_offset = Vector2(10, 20)
+shadow_opacity = 0.3
+
+[node name="Head" type="Sprite2D" parent="." index="7"]
+position = Vector2(0, -16)
+texture = ExtResource("5_fgd5d")

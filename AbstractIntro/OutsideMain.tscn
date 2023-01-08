@@ -1,0 +1,169 @@
+[gd_scene load_steps=19 format=3 uid="uid://ldp5i2bvnwwq"]
+
+[ext_resource type="Script" path="res://OutsideMain.gd" id="1_eigpp"]
+[ext_resource type="PackedScene" uid="uid://ch077igllvbmv" path="res://Entity/EntPlayer.tscn" id="2_gaqkj"]
+[ext_resource type="Texture2D" uid="uid://bnhhoxwwwg4x0" path="res://Assets/OutsideBg.png" id="3_id13g"]
+[ext_resource type="PackedScene" uid="uid://c7nv4hcry4q82" path="res://Player/PlayerCamera.tscn" id="4_0qh4k"]
+[ext_resource type="PackedScene" uid="uid://6qrx856058hs" path="res://Env/Buildings/Barn.tscn" id="5_rikhu"]
+[ext_resource type="Shader" path="res://Bush.gdshader" id="6_8cfjl"]
+[ext_resource type="Texture2D" uid="uid://crg8jt7sb8vv1" path="res://Assets/OakTree.png" id="7_up5jr"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="8_ls3cb"]
+[ext_resource type="PackedScene" uid="uid://w7wi8nmc1q54" path="res://Env/Buildings/House.tscn" id="9_nqvwv"]
+[ext_resource type="PackedScene" uid="uid://bbj3p3hbfk7x6" path="res://NPC/SisterNPC.tscn" id="10_3gmro"]
+[ext_resource type="PackedScene" uid="uid://b4sx02c5c3tma" path="res://NPC/DadNPC.tscn" id="11_qqca1"]
+[ext_resource type="PackedScene" uid="uid://bsmfi68kl5j44" path="res://NPC/WorkerNPC.tscn" id="12_guq1r"]
+[ext_resource type="PackedScene" uid="uid://cbf68pgdbu0i4" path="res://NPC/OfficerNPC.tscn" id="13_qqjta"]
+[ext_resource type="PackedScene" uid="uid://dq8xpk28qxlw2" path="res://NPC/GrannyNPC.tscn" id="14_qmmom"]
+[ext_resource type="PackedScene" uid="uid://itpjt75n60ua" path="res://NPC/PhoneNPC.tscn" id="15_wwax6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u1jp1"]
+shader = ExtResource("6_8cfjl")
+shader_parameter/amplitude = null
+shader_parameter/time_factor = null
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tlp3s"]
+radius = 152.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6jm7"]
+radius = 304.0
+
+[node name="OutsideMain" type="Node2D"]
+script = ExtResource("1_eigpp")
+
+[node name="OutsideBg" type="Sprite2D" parent="."]
+z_index = -10
+scale = Vector2(2, 2)
+texture = ExtResource("3_id13g")
+metadata/_edit_lock_ = true
+
+[node name="PlayerCamera" parent="." instance=ExtResource("4_0qh4k")]
+position = Vector2(0, 0)
+limit_left = -9100
+limit_top = -5200
+limit_right = 9100
+limit_bottom = 5200
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+is_static = false
+
+[node name="BarnInterior" parent="." instance=ExtResource("5_rikhu")]
+position = Vector2(-7072, 3312)
+rotation = 0.0648948
+metadata/_edit_lock_ = true
+
+[node name="AbovePlayerOutside" type="Node2D" parent="."]
+
+[node name="ShadowSprite2D2" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 10
+material = SubResource("ShaderMaterial_u1jp1")
+position = Vector2(-3584, 3088)
+rotation = 1.48325
+texture = ExtResource("7_up5jr")
+script = ExtResource("8_ls3cb")
+shadow_offset = Vector2(100, 100)
+shadow_opacity = 0.2
+
+[node name="ShadowSprite2D6" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 10
+material = SubResource("ShaderMaterial_u1jp1")
+position = Vector2(-6864, 1848)
+texture = ExtResource("7_up5jr")
+script = ExtResource("8_ls3cb")
+shadow_offset = Vector2(100, 100)
+shadow_opacity = 0.2
+
+[node name="ShadowSprite2D5" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 10
+material = SubResource("ShaderMaterial_u1jp1")
+position = Vector2(-4272, 4024)
+rotation = -1.27931
+texture = ExtResource("7_up5jr")
+script = ExtResource("8_ls3cb")
+shadow_offset = Vector2(100, 100)
+shadow_opacity = 0.2
+
+[node name="ShadowSprite2D7" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 10
+material = SubResource("ShaderMaterial_u1jp1")
+position = Vector2(-5544, 1976)
+rotation = -1.27931
+texture = ExtResource("7_up5jr")
+script = ExtResource("8_ls3cb")
+shadow_offset = Vector2(100, 100)
+shadow_opacity = 0.2
+
+[node name="ShadowSprite2D3" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 10
+material = SubResource("ShaderMaterial_u1jp1")
+position = Vector2(-1888, 3352)
+texture = ExtResource("7_up5jr")
+script = ExtResource("8_ls3cb")
+shadow_offset = Vector2(100, 100)
+shadow_opacity = 0.2
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 10
+material = SubResource("ShaderMaterial_u1jp1")
+position = Vector2(-4672, 3072)
+texture = ExtResource("7_up5jr")
+script = ExtResource("8_ls3cb")
+shadow_offset = Vector2(100, 100)
+shadow_opacity = 0.2
+
+[node name="ShadowSprite2D4" type="Sprite2D" parent="AbovePlayerOutside"]
+z_index = 10
+material = SubResource("ShaderMaterial_u1jp1")
+position = Vector2(-5800, 4248)
+texture = ExtResource("7_up5jr")
+script = ExtResource("8_ls3cb")
+shadow_offset = Vector2(100, 100)
+shadow_opacity = 0.2
+
+[node name="House" parent="." instance=ExtResource("9_nqvwv")]
+position = Vector2(-2464, -1456)
+rotation = -0.434028
+
+[node name="EntPlayer" parent="." instance=ExtResource("2_gaqkj")]
+position = Vector2(-7400, 3336)
+
+[node name="SisterNPC" parent="." instance=ExtResource("10_3gmro")]
+position = Vector2(-2352, -2144)
+
+[node name="DadNPC" parent="." instance=ExtResource("11_qqca1")]
+position = Vector2(-2656, -1608)
+
+[node name="WorkerNPC" parent="." instance=ExtResource("12_guq1r")]
+position = Vector2(2320, -1688)
+pot_convos = ["worker-1"]
+
+[node name="OfficerNPC" parent="." instance=ExtResource("13_qqjta")]
+position = Vector2(3360, -2024)
+pot_convos = []
+
+[node name="GrannyNPC" parent="." instance=ExtResource("14_qmmom")]
+position = Vector2(3864, -1808)
+
+[node name="PolGraArea" type="Area2D" parent="."]
+position = Vector2(3592, -1872)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PolGraArea"]
+shape = SubResource("CircleShape2D_tlp3s")
+
+[node name="DadPhoArea" type="Area2D" parent="."]
+position = Vector2(-2656, -1608)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DadPhoArea"]
+shape = SubResource("CircleShape2D_l6jm7")
+
+[node name="PhoneNPC" parent="." instance=ExtResource("15_wwax6")]
+position = Vector2(-2680, -1392)
+
+[connection signal="convo_finished" from="DadNPC" to="." method="_on_dad_npc_convo_finished"]
+[connection signal="convo_finished" from="GrannyNPC" to="." method="_on_granny_npc_convo_finished"]
+[connection signal="body_entered" from="PolGraArea" to="." method="_on_pol_gra_area_body_entered"]
+[connection signal="body_entered" from="DadPhoArea" to="." method="_on_dad_pho_area_body_entered"]

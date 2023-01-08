@@ -1,28 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://ys0k2s8bwta7"]
+[gd_scene load_steps=2 format=3 uid="uid://ys0k2s8bwta7"]
 
 [ext_resource type="Script" path="res://Env/Interior.gd" id="1_cb41e"]
-[ext_resource type="Script" path="res://Env/CollisionGenerator.gd" id="2_44nyr"]
-[ext_resource type="Script" path="res://Env/PolygonCopier.gd" id="2_836v0"]
 
 [node name="Interior" type="Node2D"]
 script = ExtResource("1_cb41e")
+interior_area = NodePath("Interior/AreaCol")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="PolygonCopier2D" type="Polygon2D" parent="StaticBody2D"]
+[node name="ColPolygon" type="CollisionPolygon2D" parent="StaticBody2D"]
 z_index = 2
-color = Color(0.603922, 0.788235, 1, 1)
-script = ExtResource("2_44nyr")
+build_mode = 1
 
 [node name="Interior" type="Node2D" parent="."]
-z_index = -1
+z_index = -2
 
 [node name="AreaCol" type="Area2D" parent="Interior"]
 metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Interior/AreaCol"]
-script = ExtResource("2_836v0")
-cp = NodePath("../../../Exterior/Shape")
 
 [node name="Exterior" type="Node2D" parent="."]
 visible = false

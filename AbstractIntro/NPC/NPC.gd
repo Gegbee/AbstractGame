@@ -12,7 +12,6 @@ var cur_pot_convo : String = ""
 var starting_pos : Vector2 = Vector2()
 var player_in_area = null
 
-
 func _ready():
 	add_to_group('npc')
 	set_pot_convo()
@@ -48,3 +47,9 @@ func _process(delta):
 		if hs:
 			var rel_pos = player_in_area.global_position - global_position
 			hs.rotation = lerp(hs.rotation, atan2(rel_pos.y, rel_pos.x) - PI/2, delta * 10.0)
+
+
+func _on_convo_finished(_speaker, _convo_name):
+	await get_tree().process_frame
+	notify_near(true)
+		

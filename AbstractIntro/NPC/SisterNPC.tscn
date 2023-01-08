@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbj3p3hbfk7x6"]
+
+[ext_resource type="PackedScene" uid="uid://cn285ahgfhrcr" path="res://Entity/EntNPC.tscn" id="1_25r7l"]
+[ext_resource type="Texture2D" uid="uid://b4h5ynek62dhg" path="res://Assets/WheelChair.png" id="2_16uey"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="3_o7mwp"]
+[ext_resource type="Texture2D" uid="uid://xma2sxgyuf4r" path="res://Assets/SisterTorso.png" id="4_3smuc"]
+[ext_resource type="Texture2D" uid="uid://dsd4nk80kr82" path="res://Assets/SisterHead.png" id="5_i3x88"]
+
+[node name="SisterNPC" instance=ExtResource("1_25r7l")]
+head_sprite_path = NodePath("Head")
+
+[node name="Dialog" parent="." index="0"]
+position = Vector2(0, -144)
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="." index="6"]
+texture = ExtResource("2_16uey")
+script = ExtResource("3_o7mwp")
+shadow_offset = Vector2(10, 20)
+shadow_opacity = 0.4
+
+[node name="ShadowSprite2D2" type="Sprite2D" parent="." index="7"]
+position = Vector2(0, 24)
+texture = ExtResource("4_3smuc")
+script = ExtResource("3_o7mwp")
+shadow_offset = Vector2(10, 20)
+shadow_opacity = 0.4
+
+[node name="Head" type="Sprite2D" parent="." index="8"]
+position = Vector2(0, -32)
+texture = ExtResource("5_i3x88")

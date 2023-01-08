@@ -17,7 +17,7 @@ _global_script_classes=[{
 "base": "Node2D",
 "class": &"Dialog2D",
 "language": &"GDScript",
-"path": "res://Main.gd"
+"path": "res://Dialog.gd"
 }, {
 "base": "Node2D",
 "class": &"Interior2D",
@@ -71,6 +71,7 @@ Global="*res://Global.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 
 [input]
 
@@ -163,4 +164,5 @@ interact_dialog={
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.427451, 0.427451, 0.427451, 1)
+textures/canvas_textures/default_texture_filter=2
 textures/canvas_textures/default_texture_repeat=1

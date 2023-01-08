@@ -1,31 +1,92 @@
-[gd_scene load_steps=5 format=3 uid="uid://baolq1lhxi35w"]
+[gd_scene load_steps=12 format=3 uid="uid://baolq1lhxi35w"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1_jjf5t"]
+[ext_resource type="Script" path="res://AbstractionMain.gd" id="1_n0xpo"]
 [ext_resource type="PackedScene" uid="uid://ch077igllvbmv" path="res://Entity/EntPlayer.tscn" id="2_4lfcs"]
 [ext_resource type="Texture2D" uid="uid://dr5j64gpuo3ra" path="res://Assets/AbstractionBg.png" id="3_4bubf"]
 [ext_resource type="PackedScene" uid="uid://dwrt3rx0dqr4k" path="res://NPC/PJNPC.tscn" id="4_wu8m2"]
+[ext_resource type="PackedScene" uid="uid://c7nv4hcry4q82" path="res://Player/PlayerCamera.tscn" id="5_74nsn"]
+[ext_resource type="Texture2D" uid="uid://crg8jt7sb8vv1" path="res://Assets/OakTree.png" id="6_w03ko"]
+[ext_resource type="Script" path="res://Assets/ShadowSprite2D.gd" id="7_flgy7"]
+[ext_resource type="Texture2D" uid="uid://cklmqqvbq15cp" path="res://Assets/Bush.png" id="8_cdtxl"]
+[ext_resource type="Shader" path="res://Bush.gdshader" id="9_k51yl"]
 
-[node name="Main" type="Node2D"]
-script = ExtResource("1_jjf5t")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n53p3"]
+size = Vector2(338, 571)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ad5y8"]
+shader = ExtResource("9_k51yl")
+shader_parameter/amplitude = null
+shader_parameter/time_factor = null
+
+[node name="AbstractionMain" type="Node2D"]
+script = ExtResource("1_n0xpo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
-offset_left = -1845.0
-offset_top = -1258.0
-offset_right = 1911.0
-offset_bottom = 1047.0
-color = Color(0.886275, 0.886275, 0.886275, 1)
+offset_left = -3529.0
+offset_top = -2255.0
+offset_right = 3987.0
+offset_bottom = 2164.0
+color = Color(0.960784, 0.960784, 0.960784, 1)
+metadata/_edit_lock_ = true
 
 [node name="EntPlayer" parent="." instance=ExtResource("2_4lfcs")]
-position = Vector2(-325, 127)
+position = Vector2(-653, -63)
 metadata/_edit_group_ = true
 
 [node name="AbstractionBg" type="Sprite2D" parent="."]
 z_index = -9
-position = Vector2(62, -44)
+position = Vector2(632, -44)
 texture = ExtResource("3_4bubf")
-metadata/_edit_lock_ = true
 
 [node name="PJNPC" parent="." instance=ExtResource("4_wu8m2")]
 position = Vector2(331, -406)
-pot_convos = ["pj-intro"]
+pot_convos = ["pj-intro-1", "pj-intro-2"]
+
+[node name="PlayerCamera" parent="." instance=ExtResource("5_74nsn")]
+zoom = Vector2(0.5, 0.5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(-1347, -721, -1347, 216, 564, 208, 568, 661, 868, 661, 871, 82, 2614, 74, 2618, -329, 871, -325, 865, -730, -459, -727, -465, -942, -873, -948, -858, -727)
+
+[node name="ExitArea" type="Area2D" parent="."]
+position = Vector2(1929, -24)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea"]
+position = Vector2(159, -81.5)
+shape = SubResource("RectangleShape2D_n53p3")
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_ad5y8")
+position = Vector2(-966, -856)
+texture = ExtResource("6_w03ko")
+script = ExtResource("7_flgy7")
+shadow_offset = Vector2(100, 100)
+shadow_opacity = 0.2
+
+[node name="ShadowSprite2D2" type="Sprite2D" parent="."]
+z_index = -3
+material = SubResource("ShaderMaterial_ad5y8")
+position = Vector2(-159, 165)
+texture = ExtResource("8_cdtxl")
+script = ExtResource("7_flgy7")
+shadow_offset = Vector2(10, 10)
+shadow_opacity = 0.4
+
+[node name="ShadowSprite2D3" type="Sprite2D" parent="."]
+z_index = -3
+material = SubResource("ShaderMaterial_ad5y8")
+position = Vector2(-398, -712)
+rotation = -2.14231
+texture = ExtResource("8_cdtxl")
+script = ExtResource("7_flgy7")
+shadow_offset = Vector2(10, 10)
+shadow_opacity = 0.4
+
+[connection signal="convo_finished" from="PJNPC" to="." method="_on_pjnpc_convo_finished"]
+[connection signal="body_entered" from="ExitArea" to="." method="_on_exit_area_body_entered"]

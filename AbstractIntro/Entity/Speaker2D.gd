@@ -8,7 +8,7 @@ class_name Speaker2D
 #@export var animation_path : NodePath
 
 @onready var p = $Dialog/Base/TextureRect
-@onready var n = $Dialog/Base/VBoxContainer/Name
+#@onready var n = $Dialog/Base/VBoxContainer/Name
 @onready var t = $Dialog/Base/Text
 @onready var a = $Dialog/AnimationPlayer
 
@@ -19,6 +19,7 @@ const STEP_SPEED = 0.01
 var cur_convo_name : String = ""
 var cur_convo : Array = []
 var cur_convo_pos : int = 0
+signal convo_finished(speaker, convo_name)
 
 func _ready():
 #	p = get_node(texture_path)
@@ -32,6 +33,7 @@ func _ready():
 	end_timer.one_shot = true
 	end_timer.connect('timeout', Callable(self, '_on_end_timer_timeout'))
 	# n.text = ""
+	t.visible_characters = -1
 	t.text = ""
 	p.texture = null
 	a.play('Reset')
@@ -43,10 +45,10 @@ func join_convo(new_convo_name : String, new_convo_pos : int):
 	roll_dialog(cur_convo[cur_convo_pos])
 
 func leave_convo():
+	emit_signal('convo_finished', self, cur_convo_name)
 	cur_convo_name = ""
 	cur_convo = []
 	cur_convo_pos = 0
-	print(name)
 	
 func in_convo() -> bool:
 	if cur_convo != []:
@@ -55,14 +57,14 @@ func in_convo() -> bool:
 	
 func roll_dialog(new_dialog : Array):
 	$Dialog.z_index = 12
-	a.play('PopUp')
+	t.visible_characters = 0
 	if new_dialog[1] != null:
 		p.texture = Global.portraits[new_dialog[0]]
 	# n.text = new_dialog[0]
-	t.visible_characters = 0
-	t.text = new_dialog[1]
 	step_timer.start(STEP_SPEED)
-
+	t.text = new_dialog[1]
+	a.play('PopUp')
+	
 func finishRunningDialog():
 	step_timer.stop()
 	t.visible_characters = -1
@@ -104,6 +106,7 @@ func _on_end_timer_timeout():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "PopDown":
+		t.visible_characters = 0
 		# n.text = ""
 		t.text = ""
 		p.texture = null
